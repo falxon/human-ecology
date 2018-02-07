@@ -77,6 +77,8 @@ $gal1["card"][0]["url2"] = "/image";
 $image["title"] = "Image";
 $image = array_merge($defaultpage, $image);
 $image = array_merge($card, $image);
+$image["image_url"] = "http://placehold.it/750x500";
+$image["description"] = $lipsum;
 
 
 
