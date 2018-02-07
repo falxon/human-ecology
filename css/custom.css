@@ -1,0 +1,14 @@
+.carrots {
+  height: 400px;
+}
+
+.edge-padding {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.image-centred {
+  text-align:center;
+}
