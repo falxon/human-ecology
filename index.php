@@ -64,11 +64,21 @@ $about["page_text"][0]["main"][2]["paragraph"][0]["content"] = $lipsum;
 $about["page_text"][0]["main"][2]["image"][0]["centering"] = "justify-content-center";
 $about["page_text"][0]["main"][2]["image"][0]["img"][0]["url"] = "http://placehold.it/300x400";
 $about["page_text"][0]["main"][2]["image"][0]["img"][1]["url"] = "http://placehold.it/300x400";
-
-
-
-
 $about = array_merge($card, $about);
+
+
+$gal1["title"] = "Gallery 1";
+$gal1 = array_merge($defaultpage, $gal1);
+$gal1["page_text"][0]["main"][0]["title"][0]["words"] = "Gallery 1";
+$gal1["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
+$gal1["card"][0]["image"][0]["url"] = "http://placehold.it/300x200";
+$gal1["card"][0]["url2"] = "/image";
+
+$image["title"] = "Image";
+$image = array_merge($defaultpage, $image);
+$image = array_merge($card, $image);
+
+
 
 
 $currentpage = $_SERVER['REQUEST_URI'];
@@ -79,6 +89,12 @@ if($currentpage=="/home" || $currentpage == "/"){
 } elseif ($currentpage=="/about"){
 	$bodyModel = $about;
 	$template = "home";
+} elseif ($currentpage=="/gal1"){
+	$bodyModel = $gal1;
+	$template = "gallery";
+} elseif ($currentpage=="/image"){
+	$bodyModel = $image;
+	$template = "image";
 } else {
 	$bodyModel = $error;
 	$template = "home";

@@ -42,21 +42,9 @@
       </div>
     </nav>
 
-    <!-- Header with Background Image -->
-    {{#header}}<header class="business-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h>{{title}}</h>
-          </div>
-        </div>
-      </div>
-    </header>
-    {{/header}}
-
     <!-- Page Content -->
     <div class="container">
-{{#page_text}}
+  {{#page_text}}
       <div class="row">
         <div class="col-sm-12">
           {{#main}}
@@ -100,25 +88,16 @@
         {{#card}}
         <div class="col-sm-4 my-4">
           <div class="card">
-            {{#image}}<img class="card-img-top" src="{{url}}" alt="">
-            <div class="card-body">{{/image}}
-              <h4 class="card-title">{{title}}</h4>
-              {{#imageid}}<h5 class="card-title">{{id}}</h5>{{/imageid}}
-              <p class="card-text">{{text}}</p>
-            </div>
-            {{#button}}
-            <div class="card-footer">
-              <a href="{{url}}" class="btn btn-primary">{{text}}</a>
-            </div>
-            {{/button}}
+            <a href="{{url2}}">{{#image}}<img class="card-img-top" src="{{url}}" alt="">
+            {{/image}}</a>
           </div>
         </div>
         {{/card}}
-        </div>
 
       </div>
       <!-- /.row -->
 
+      </div>
     </div>
   </div>
     <!-- /.container -->
@@ -126,7 +105,9 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Human Ecology</p>
+
+          <p class="m-0 text-center text-white">Copyright &copy; Human Ecology</p>
+
       </div>
       <!-- /.container -->
     </footer>
