@@ -21,6 +21,16 @@ $defaultpage["navbar"][3]["name"] = "Gallery 2";
 $defaultpage["navbar"][4]["url"] = "/contact";
 $defaultpage["navbar"][4]["name"] = "Contact Me";
 
+$defaultinternal["site_name"] = "Human Ecology";
+$defaultinternal["navbar"][0]["url"] = "/home";
+$defaultinternal["navbar"][0]["name"] = "Home";
+$defaultinternal["navbar"][1]["url"] = "/control";
+$defaultinternal["navbar"][1]["name"] = "Control Panel";
+$defaultinternal["navbar"][2]["url"] = "/add-photo";
+$defaultinternal["navbar"][2]["name"] = "Add Photo";
+
+
+
 $card["card"][0]["image"][0]["url"] = "http://placehold.it/300x200";
 $card["card"][0]["imageid"][0]["id"] = "bf873t48";
 $card["card"][0]["title"] = "Random picture";
@@ -40,7 +50,7 @@ $card["card"][2]["text"] = "Blah";
 $card["card"][2]["button"][0]["url"] = "";
 $card["card"][2]["button"][0]["text"] = "See More";
 
-$home["title"] = "Home";
+$home["title"] = "Human Ecology";
 $home = array_merge($defaultpage, $home);
 $home["navbar"][0]["current"][0]["raisin"] = "(current)";
 $home["header"][0]["title"] = "";
@@ -49,7 +59,7 @@ $home["page_text"][0]["main"][0]["paragraph"][0]["content"] = "blahblahblahblahb
 $home["page_text"][0]["button"][0]["name"] = "Read More";
 $home = array_merge($card, $home);
 
-$about["title"] = "About";
+$about["title"] = "Human Ecology - About";
 $about = array_merge($defaultpage, $about);
 $about["navbar"][1]["current"][0]["raisin"] = "(current)";
 $about["page_text"][0]["main"][0]["title"][0]["words"] = "About Human Ecology";
@@ -96,6 +106,17 @@ $buy["card"][0]["image_id"][0]["name"] = "Image ID";
 $buy["card"][0]["org"][0]["name"] = "Organisation or Company";
 $buy["card"][0]["button"][0]["button_name"] = "Submit";
 
+$dbentry["title"] = "Add photos";
+$dbentry = array_merge($defaultinternal, $dbentry);
+$dbentry["page_text"][0]["main"][0]["title"][0]["words"] = "Add photos";
+$dbentry["page_text"][0]["main"][0]["paragraph"][0]["content"] = "Use this form to add new photos to the site. You must provide a thumbnail version and a larger, watermarked version.";
+$dbentry["card"][0]["card_title"] = "";
+$dbentry["card"][0]["button"][0]["button_name"] = "Submit";
+
+$control["title"] = "Control Panel";
+$control = array_merge($defaultinternal, $control);
+
+
 $currentpage = $_SERVER['REQUEST_URI'];
 
 if($currentpage=="/home" || $currentpage == "/"){
@@ -116,6 +137,12 @@ if($currentpage=="/home" || $currentpage == "/"){
 } elseif ($currentpage=="/buy"){
 	$bodyModel = $buy;
 	$template = "form";
+} elseif ($currentpage=="/control"){
+	$bodyModel = $control;
+	$template = "home";
+} elseif ($currentpage=="/add-photo"){
+	$bodyModel = $dbentry;
+	$template = "dbentry";
 } else {
 	$bodyModel = $error;
 	$template = "home";
