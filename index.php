@@ -1,5 +1,6 @@
 <?php
-session_start();
+session_start(['cookie_lifetime' => 86400]);
+$password_flag = 0;
 
 require 'modules/mustache/src/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
@@ -34,6 +35,8 @@ $defaultinternal["navbar"][1]["url"] = "/control";
 $defaultinternal["navbar"][1]["name"] = "Control Panel";
 $defaultinternal["navbar"][2]["url"] = "/add-photo";
 $defaultinternal["navbar"][2]["name"] = "Add Photo";
+$defaultinternal["navbar"][3]["url"] = "/logout";
+$defaultinternal["navbar"][3]["name"] = "Log out";
 
 
 
@@ -117,9 +120,6 @@ $login = array_merge($defaultpage, $login);
 $login["card"][0]["card_title"] = "Login to upload and manage photos and other information";
 $login["card"][0]["button"][0]["button_name"] = "Login";
 
-$logging["title"] = "Logging on";
-$logging = array_merge($defaultpage, $logging);
-
 $dbentry["title"] = "Add photos";
 $dbentry = array_merge($defaultinternal, $dbentry);
 $dbentry["page_text"][0]["main"][0]["title"][0]["words"] = "Add photos";
@@ -129,6 +129,10 @@ $dbentry["card"][0]["button"][0]["button_name"] = "Submit";
 
 $control["title"] = "Control Panel";
 $control = array_merge($defaultinternal, $control);
+
+$logout["title"] = "Logging Out";
+$logout = array_merge($defaultinternal, $logout);
+$logout["page_text"][0]["main"][0]["title"][0]["words"] = "You are being logged out";
 
 
 $currentpage = $_SERVER['REQUEST_URI'];
@@ -155,58 +159,41 @@ if($currentpage=="/home" || $currentpage == "/"){
 	if(isset($_POST["password"])){
     $login = R::load("login", 1);
     if(password_verify ($_POST["password"], $login["phash"])){
-			$_SESSION["password"] = "true";
-      //session_start(['cookie_lifetime' => 3600]);
-      header("Location: /logging");
+			$_SESSION["password"] = 1;
+      header("Location: /control");
     } else {
+			$_SESSION["passsword"] = 0;
       header("Location: /login");
     }
   }
 	$bodyModel = $login;
 	$template = "login";
-} elseif ($currentpage=="/logging"){
-		if ((isset($_SESSION["user"]))) {
-			echo "ES WERKT";
-		}
-		if(isset ($_COOKIE["PHPSESSID"])){
-			$user = R::load("user", 1);
-			$user["sessionid"] = $_COOKIE["PHPSESSID"];
-			R::store($user);
-		}
-
-	/*if(isset($_POST["password"])){
-    $logging = R::load("login", 1);
-    if(password_verify ($_POST["password"], $logging["phash"])){
-      if(session_start(['cookie_lifetime' => 3600])){
-				$user = R::load("user", 1);
-			  $user["sessionid"] = $_COOKIE["PHPSESSID"];
-	      #header("Location: /control");
-			  R::store($user);
-			}
-    } else {
-      header("Location: /login");
-    }
-  }*/
-	$bodyModel = $logging;
-	$template = "home";
 } elseif ($currentpage=="/control"){
-	/*if(isset($_POST["password"])){
-    $control = R::load("login", 1);
-    if(password_verify ($_POST["password"], $control["phash"])){
-      session_start(['cookie_lifetime' => 3600]);
-			$user = R::load("user", 1);
-		  $user["sessionid"] = $_COOKIE["PHPSESSID"];
-      #header("Location: /control");
-		  R::store($user);
-    } else {
-      header("Location: /login");
-    }
-  }*/
-	$bodyModel = $control;
-	$template = "home";
+	if (isset($_SESSION["password"])){
+		if ($_SESSION["password"]==1){
+			$bodyModel = $control;
+			$template = "home";
+		}
+	} else {
+		$_SESSION["passsword"] = 0;
+		header("Location: /login");
+	}
 } elseif ($currentpage=="/add-photo"){
-	$bodyModel = $dbentry;
-	$template = "dbentry";
+	if (isset($_SESSION["password"])){
+		if ($_SESSION["password"]==1){
+			$bodyModel = $dbentry;
+			$template = "dbentry";
+		}
+	} else {
+		$_SESSION["passsword"] = 0;
+		header("Location: /login");
+	}
+} elseif ($currentpage=="/logout"){
+	$_SESSION["password"] = 0;
+	session_destroy();
+	$bodyModel = $logout;
+	$template = "home";
+	header("Location: /login");
 } else {
 	$bodyModel = $error;
 	$template = "home";
