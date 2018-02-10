@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{title}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/modules/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/business-frontpage.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">{{site_name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {{#navbar}}
+            <li class="nav-item {{active}}">
+              <a class="nav-link" href="{{url}}">{{name}}
+              {{#current}}<span class="sr-only">{{raisin}}</span>{{/current}}</a>
+            </li>
+            {{/navbar}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header with Background Image -->
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+      <!-- /.row -->
+
+      <div class="row justify-content-center edge-padding">
+        {{#card}}
+        <div class="col-md-5 mb-4 centered">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title">{{card_title}}</h2>
+              <p> {{card_subtitle}} </p>
+              <form action="/login" method="post">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="type password here" required="true">
+                </div>
+            </div>
+            <div class="card-footer">
+              {{#button}}<button type="submit" class="btn btn-primary float-right">{{button_name}}</button>{{/button}}
+            </div>
+            </form>
+          </div>
+        </div>
+        {{/card}}
+
+      <!-- /.row -->
+
+    </div>
+  </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Human Ecology</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="modules/jquery/jquery.js"></script>
+    <script src="modules/bootstrap/js/bootstrap.bundle.js"></script>
+
+  </body>
+
+</html>

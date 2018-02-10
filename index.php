@@ -1,7 +1,13 @@
 <?php
+session_start();
+
 require 'modules/mustache/src/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
 require "modules/redbean/rb.php";
+require "secure.php";
+
+R::setup('mysql:host=localhost;dbname=ecology',
+        $database_user, $database_pass);
 
 $m = new Mustache_Engine(array(
 'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__).'/templates')
@@ -106,6 +112,14 @@ $buy["card"][0]["image_id"][0]["name"] = "Image ID";
 $buy["card"][0]["org"][0]["name"] = "Organisation or Company";
 $buy["card"][0]["button"][0]["button_name"] = "Submit";
 
+$login["title"] = "Login";
+$login = array_merge($defaultpage, $login);
+$login["card"][0]["card_title"] = "Login to upload and manage photos and other information";
+$login["card"][0]["button"][0]["button_name"] = "Login";
+
+$logging["title"] = "Logging on";
+$logging = array_merge($defaultpage, $logging);
+
 $dbentry["title"] = "Add photos";
 $dbentry = array_merge($defaultinternal, $dbentry);
 $dbentry["page_text"][0]["main"][0]["title"][0]["words"] = "Add photos";
@@ -137,7 +151,57 @@ if($currentpage=="/home" || $currentpage == "/"){
 } elseif ($currentpage=="/buy"){
 	$bodyModel = $buy;
 	$template = "form";
+} elseif ($currentpage=="/login"){
+	if(isset($_POST["password"])){
+    $login = R::load("login", 1);
+    if(password_verify ($_POST["password"], $login["phash"])){
+			$_SESSION["password"] = "true";
+      //session_start(['cookie_lifetime' => 3600]);
+      header("Location: /logging");
+    } else {
+      header("Location: /login");
+    }
+  }
+	$bodyModel = $login;
+	$template = "login";
+} elseif ($currentpage=="/logging"){
+		if ((isset($_SESSION["user"]))) {
+			echo "ES WERKT";
+		}
+		if(isset ($_COOKIE["PHPSESSID"])){
+			$user = R::load("user", 1);
+			$user["sessionid"] = $_COOKIE["PHPSESSID"];
+			R::store($user);
+		}
+
+	/*if(isset($_POST["password"])){
+    $logging = R::load("login", 1);
+    if(password_verify ($_POST["password"], $logging["phash"])){
+      if(session_start(['cookie_lifetime' => 3600])){
+				$user = R::load("user", 1);
+			  $user["sessionid"] = $_COOKIE["PHPSESSID"];
+	      #header("Location: /control");
+			  R::store($user);
+			}
+    } else {
+      header("Location: /login");
+    }
+  }*/
+	$bodyModel = $logging;
+	$template = "home";
 } elseif ($currentpage=="/control"){
+	/*if(isset($_POST["password"])){
+    $control = R::load("login", 1);
+    if(password_verify ($_POST["password"], $control["phash"])){
+      session_start(['cookie_lifetime' => 3600]);
+			$user = R::load("user", 1);
+		  $user["sessionid"] = $_COOKIE["PHPSESSID"];
+      #header("Location: /control");
+		  R::store($user);
+    } else {
+      header("Location: /login");
+    }
+  }*/
 	$bodyModel = $control;
 	$template = "home";
 } elseif ($currentpage=="/add-photo"){
