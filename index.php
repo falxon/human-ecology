@@ -181,6 +181,43 @@ if($currentpage=="/home" || $currentpage == "/"){
 } elseif ($currentpage=="/add-photo"){
 	if (isset($_SESSION["password"])){
 		if ($_SESSION["password"]==1){
+			if (isset($_POST["gallery-select"])&&
+			isset($_POST["watermarked"])&&
+			isset($_POST["thumb"])){
+				if ($_POST["gallery-select"]=="Photography"){
+					#echo 'eeeeeeeeeeeels';
+					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
+					//print_r($idarray);
+					$id_number = $idarray[0]["MAX(identification)"];
+
+					//echo implode($idarray);
+					/*
+					foreach ($idarray as $key => $value){
+						echo $key;
+						echo $value;
+					}
+					$example_array = array(1 => "bees", 2 => "are", 3 => "perfect");
+
+					foreach ($example_array as $key => $value){
+						if($value == "perfect" || $key == 1){
+							echo ($key);
+							echo (" ");
+							echo ($value);
+							echo ("<br/>");
+						}
+					}
+					*/
+
+					$photo = R::dispense("photo");
+					$photo["small"] = $_POST["thumb"];
+					$photo["watermark"] = $_POST["watermarked"];
+					$photo["identification"] = $id_number + 1;
+					R::store($photo);
+
+				}
+
+			}
+			#echo 'eeeeeeeeeeeels';
 			$bodyModel = $dbentry;
 			$template = "dbentry";
 		}

@@ -50,7 +50,7 @@
         <div class="col-sm-12">
           {{#main}}
           {{#title}}
-          <h2 class="mt-4">{{words}}</h2>
+          <h2 class="mt-4">{{{words}}}</h2>
           {{/title}}
           {{#title_small}}
           <h3 class="mt-4">{{words}}</h3>
@@ -91,21 +91,21 @@
           <div class="card h-100">
             <div class="card-body">
               <h2 class="card-title">{{card_title}}</h2>
-              <form action="/home" method="post">
+              <form action="/add-photo" method="post">
                 <div class="form-group">
                   <label for="gallery-select">Select Gallery:</label>
-                  <select class="form-control" id="gallery-select">
+                  <select name="gallery-select" class="form-control" id="gallery-select">
                     <option>Photography</option>
                     <option>Drawing</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="watermarked">URL for the watermarked picture:</label>
-                  <input type="url" class="form-control" id="watermarked">
+                  <input type="url" class="form-control" name="watermarked" id="watermarked">
                 </div>
                 <div class="form-group">
                   <label for="thumb">URL for the thumbnail picture:</label>
-                  <input type="url" class="form-control" id="thumb">
+                  <input type="url" name="thumb" class="form-control" id="thumb">
                 </div>
 
 
