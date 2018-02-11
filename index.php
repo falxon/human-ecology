@@ -21,10 +21,10 @@ $defaultpage["navbar"][0]["url"] = "/home";
 $defaultpage["navbar"][0]["name"] = "Home";
 $defaultpage["navbar"][1]["url"] = "/about";
 $defaultpage["navbar"][1]["name"] = "About";
-$defaultpage["navbar"][2]["url"] = "/gal1";
-$defaultpage["navbar"][2]["name"] = "Gallery 1";
-$defaultpage["navbar"][3]["url"] = "/gal2";
-$defaultpage["navbar"][3]["name"] = "Gallery 2";
+$defaultpage["navbar"][2]["url"] = "/photo";
+$defaultpage["navbar"][2]["name"] = "Photography";
+$defaultpage["navbar"][3]["url"] = "/drawing";
+$defaultpage["navbar"][3]["name"] = "Pet Drawing";
 $defaultpage["navbar"][4]["url"] = "/contact";
 $defaultpage["navbar"][4]["name"] = "Contact Me";
 
@@ -86,12 +86,12 @@ $about["page_text"][0]["main"][2]["image"][0]["img"][1]["url"] = "http://placeho
 $about = array_merge($card, $about);
 
 
-$gal1["title"] = "Gallery 1";
-$gal1 = array_merge($defaultpage, $gal1);
-$gal1["page_text"][0]["main"][0]["title"][0]["words"] = "Gallery 1";
-$gal1["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
-$gal1["card"][0]["image"][0]["url"] = "http://placehold.it/300x200";
-$gal1["card"][0]["url2"] = "/image";
+$photo["title"] = "Gallery 1";
+$photo = array_merge($defaultpage, $photo);
+$photo["page_text"][0]["main"][0]["title"][0]["words"] = "Gallery 1";
+$photo["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
+$photo["card"][0]["image"][0]["url"] = "http://placehold.it/300x200";
+$photo["card"][0]["url2"] = "/image";
 
 $image["title"] = "Image";
 $image = array_merge($defaultpage, $image);
@@ -143,8 +143,8 @@ if($currentpage=="/home" || $currentpage == "/"){
 } elseif ($currentpage=="/about"){
 	$bodyModel = $about;
 	$template = "home";
-} elseif ($currentpage=="/gal1"){
-	$bodyModel = $gal1;
+} elseif ($currentpage=="/photo"){
+	$bodyModel = $photo;
 	$template = "gallery";
 } elseif ($currentpage=="/image"){
 	$bodyModel = $image;
@@ -185,39 +185,19 @@ if($currentpage=="/home" || $currentpage == "/"){
 			isset($_POST["watermarked"])&&
 			isset($_POST["thumb"])){
 				if ($_POST["gallery-select"]=="Photography"){
-					#echo 'eeeeeeeeeeeels';
 					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
-					//print_r($idarray);
 					$id_number = $idarray[0]["MAX(identification)"];
-
-					//echo implode($idarray);
-					/*
-					foreach ($idarray as $key => $value){
-						echo $key;
-						echo $value;
-					}
-					$example_array = array(1 => "bees", 2 => "are", 3 => "perfect");
-
-					foreach ($example_array as $key => $value){
-						if($value == "perfect" || $key == 1){
-							echo ($key);
-							echo (" ");
-							echo ($value);
-							echo ("<br/>");
-						}
-					}
-					*/
-
 					$photo = R::dispense("photo");
 					$photo["small"] = $_POST["thumb"];
 					$photo["watermark"] = $_POST["watermarked"];
 					$photo["identification"] = $id_number + 1;
 					R::store($photo);
+				}
+				elseif ($_POST["gallery-select"]=="Drawing"){
 
 				}
 
 			}
-			#echo 'eeeeeeeeeeeels';
 			$bodyModel = $dbentry;
 			$template = "dbentry";
 		}
