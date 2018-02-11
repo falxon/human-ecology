@@ -6,13 +6,14 @@ R::setup('mysql:host=localhost;dbname=ecology',
         $database_user, $database_pass);
 
 
+/*
 $photo = R::dispense("photo");
 $photo["small"] = "www.placehold.it/300x200";
 $photo["watermark"] = "www.placehold.it/900x600";
-$photo["identification"] = "bahhhh";
+$photo["identification"] = 18467;
 
 $id = R::store($photo);
-/*
+
 $login = R::dispense("login");
 $login["phash"] = "$2y$10$3svhflKo4Sm8a5aEpQ3spe9EUiJTKRvPuMhJJjVEESqpRVs9k2fO6";
 $loginid = R::store($login);
