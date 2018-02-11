@@ -23,7 +23,7 @@ $defaultpage["navbar"][1]["url"] = "/about";
 $defaultpage["navbar"][1]["name"] = "About";
 $defaultpage["navbar"][2]["url"] = "/photo";
 $defaultpage["navbar"][2]["name"] = "Photography";
-$defaultpage["navbar"][3]["url"] = "/drawing";
+$defaultpage["navbar"][3]["url"] = "/pets";
 $defaultpage["navbar"][3]["name"] = "Pet Drawing";
 $defaultpage["navbar"][4]["url"] = "/contact";
 $defaultpage["navbar"][4]["name"] = "Contact Me";
@@ -86,12 +86,18 @@ $about["page_text"][0]["main"][2]["image"][0]["img"][1]["url"] = "http://placeho
 $about = array_merge($card, $about);
 
 
-$photo["title"] = "Gallery 1";
+$photo["title"] = "Photography";
 $photo = array_merge($defaultpage, $photo);
-$photo["page_text"][0]["main"][0]["title"][0]["words"] = "Gallery 1";
+$photo["page_text"][0]["main"][0]["title"][0]["words"] = "Photography";
 $photo["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
 $photo["card"][0]["image"][0]["url"] = "http://placehold.it/300x200";
 $photo["card"][0]["url2"] = "/image";
+
+$pets["title"] = "Pet Drawing";
+$pets = array_merge($defaultpage, $pets);
+$pets["page_text"][0]["main"][0]["title"][0]["words"] = "Pet Drawing";
+$pets["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
+
 
 $image["title"] = "Image";
 $image = array_merge($defaultpage, $image);
@@ -145,6 +151,9 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$template = "home";
 } elseif ($currentpage=="/photo"){
 	$bodyModel = $photo;
+	$template = "gallery";
+} elseif ($currentpage=="/pets"){
+	$bodyModel = $pets;
 	$template = "gallery";
 } elseif ($currentpage=="/image"){
 	$bodyModel = $image;
