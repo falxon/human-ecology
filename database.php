@@ -11,6 +11,8 @@ $photo = R::dispense("photo");
 $photo["small"] = "www.placehold.it/300x200";
 $photo["watermark"] = "www.placehold.it/900x600";
 $photo["identification"] = 18467;
+$photo["description"] = "blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah";
+$photo["tags"] = "wolf";
 
 $id = R::store($photo);
 
