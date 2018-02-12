@@ -107,30 +107,13 @@ $pets["page_text"][0]["main"][0]["title"][0]["words"] = "Pet Drawing";
 $pets["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
 
 
-$image["title"] = "Image";
-$image = array_merge($defaultpage, $image);
-$image = array_merge($card, $image);
-$carrot = substr($_SERVER['REQUEST_URI'], 1);
-$all_carrots = (R::getAll("SELECT $carrot"));
-//print_r (R::getAll("SELECT watermark FROM photo WHERE identification = $carrot"));
-$current_photo_row = R::find("photo","identification = ?", [$carrot]);
-$current_photo_url = $current_photo_row[1]["watermark"];
-$image["image_url"] = $current_photo_url;
-$image["image_id"] = $carrot;
-$image["description"] = $lipsum;
-
-$contact["title"] = "Contact me";
-$contact = array_merge($defaultpage, $contact);
-$contact["page_text"][0]["main"][0]["title"][0]["words"] = "Contact me";
-$contact["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
-$contact["card"][0]["card_title"] = "Contact Form";
-$contact["card"][0]["button"][0]["button_name"] = "Submit";
 
 $buy["title"] = "Buy Photo";
 $buy = array_merge($defaultpage, $buy);
 $buy["page_text"][0]["main"][0]["title"][0]["words"] = "Buy a photograph";
 $buy["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
 $buy["card"][0]["image_id"][0]["name"] = "Image ID";
+$buy["card"][0]["image_id"][0]["img_ident"] = $_POST["image_id"];
 $buy["card"][0]["org"][0]["name"] = "Organisation or Company";
 $buy["card"][0]["button"][0]["button_name"] = "Submit";
 
@@ -169,9 +152,11 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$bodyModel = $pets;
 	$template = "gallery";
 } elseif (preg_match("/\d+/",$currentpage)){
+	include "php-include/image.inc.php";
 	$bodyModel = $image;
 	$template = "image";
 } elseif ($currentpage=="/contact"){
+	include "php-include/contact.inc.php";
 	$bodyModel = $contact;
 	$template = "form";
 } elseif ($currentpage=="/buy"){
