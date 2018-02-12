@@ -59,31 +59,9 @@ $card["card"][2]["text"] = "Blah";
 $card["card"][2]["button"][0]["url"] = "";
 $card["card"][2]["button"][0]["text"] = "See More";
 
-$home["title"] = "Human Ecology";
-$home = array_merge($defaultpage, $home);
-$home["navbar"][0]["current"][0]["raisin"] = "(current)";
-$home["header"][0]["title"] = "";
-$home["page_text"][0]["main"][0]["title"][0]["words"] = "About Human Ecology";
-$home["page_text"][0]["main"][0]["paragraph"][0]["content"] = "blhblahblahblahbala";
-$home["page_text"][0]["button"][0]["name"] = "Read More";
-$home = array_merge($card, $home);
 
-$about["title"] = "Human Ecology - About";
-$about = array_merge($defaultpage, $about);
-$about["navbar"][1]["current"][0]["raisin"] = "(current)";
-$about["page_text"][0]["main"][0]["title"][0]["words"] = "About Human Ecology";
-$about["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
-$about["page_text"][0]["main"][0]["paragraph"][1]["content"] = $lipsum;
-$about["page_text"][0]["main"][1]["title_small"][0]["words"] = "Smaller Title";
-$about["page_text"][0]["main"][1]["paragraph"][0]["content"] = $lipsum;
-$about["page_text"][0]["main"][1]["image"][0]["img"][0]["url"] = "http://placehold.it/300x400";
-$about["page_text"][0]["main"][1]["image"][0]["img"][1]["url"] = "http://placehold.it/300x400";
-$about["page_text"][0]["main"][1]["image"][0]["img"][2]["url"] = "http://placehold.it/300x400";
-$about["page_text"][0]["main"][2]["paragraph"][0]["content"] = $lipsum;
-$about["page_text"][0]["main"][2]["image"][0]["centering"] = "justify-content-center";
-$about["page_text"][0]["main"][2]["image"][0]["img"][0]["url"] = "http://placehold.it/300x400";
-$about["page_text"][0]["main"][2]["image"][0]["img"][1]["url"] = "http://placehold.it/300x400";
-$about = array_merge($card, $about);
+
+
 
 
 
@@ -96,14 +74,7 @@ $pets["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
 
 
 
-$buy["title"] = "Buy Photo";
-$buy = array_merge($defaultpage, $buy);
-$buy["page_text"][0]["main"][0]["title"][0]["words"] = "Buy a photograph";
-$buy["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
-$buy["card"][0]["image_id"][0]["name"] = "Image ID";
-$buy["card"][0]["image_id"][0]["img_ident"] = $_POST["image_id"];
-$buy["card"][0]["org"][0]["name"] = "Organisation or Company";
-$buy["card"][0]["button"][0]["button_name"] = "Submit";
+
 
 $login["title"] = "Login";
 $login = array_merge($defaultpage, $login);
@@ -128,6 +99,7 @@ $logout["page_text"][0]["main"][0]["title"][0]["words"] = "You are being logged 
 $currentpage = $_SERVER['REQUEST_URI'];
 
 if($currentpage=="/home" || $currentpage == "/"){
+	include "php-include/home.inc.php";
 	$bodyModel = $home;
 	$template = "home";
 } elseif ($currentpage=="/about"){
@@ -149,6 +121,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$bodyModel = $contact;
 	$template = "form";
 } elseif ($currentpage=="/buy"){
+	include "php-include/buy.inc.php";
 	$bodyModel = $buy;
 	$template = "form";
 } elseif ($currentpage=="/login"){
