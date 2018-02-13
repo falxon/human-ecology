@@ -103,6 +103,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$bodyModel = $home;
 	$template = "home";
 } elseif ($currentpage=="/about"){
+	include "php-include/about.inc.php";
 	$bodyModel = $about;
 	$template = "home";
 } elseif ($currentpage=="/photo"){
