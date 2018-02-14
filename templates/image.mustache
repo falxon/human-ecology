@@ -81,17 +81,8 @@
           {{#card}}
           <div class="col-sm-4 my-4">
             <div class="card">
-              {{#image}}<img class="card-img-top" src="{{url}}" alt="">
-              <div class="card-body">{{/image}}
-                <h4 class="card-title">{{title}}</h4>
-                {{#imageid}}<h5 class="card-title">{{id}}</h5>{{/imageid}}
-                <p class="card-text">{{text}}</p>
-              </div>
-              {{#button}}
-              <div class="card-footer">
-                <a href="{{url}}" class="btn btn-primary">{{text}}</a>
-              </div>
-              {{/button}}
+              {{#image}}<a href="{{url2}}"><img class="card-img-top" src="{{url}}" alt=""></a>
+              {{/image}}
             </div>
           </div>
           {{/card}}

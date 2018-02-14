@@ -1,7 +1,7 @@
 <?php
 $image["title"] = "Image";
 $image = array_merge($defaultpage, $image);
-$image = array_merge($card, $image);
+//$image = array_merge($card, $image);
 $carrot = substr($_SERVER['REQUEST_URI'], 1);
 //$all_carrots = (R::getAll("SELECT $carrot"));
 //print_r (R::getAll("SELECT watermark FROM photo WHERE identification = $carrot"));
@@ -21,13 +21,29 @@ $image["tags"] = $current_photo_tags;
 
 preg_match_all("/[^,]+/", $current_photo_tags, $current_photo_tags_sep);
 
+$image["card"][0]["image"][0]["url"] = "http://placehold.it/320x215";
+$image["card"][0]["image"][0]["url2"] = "/";
+$image["card"][1]["image"][0]["url"] = "http://placehold.it/320x216";
+$image["card"][1]["image"][0]["url2"] = "/";
+$image["card"][2]["image"][0]["url"] = "http://placehold.it/320x217";
+$image["card"][2]["image"][0]["url2"] = "/";
+
 //print_r ($current_photo_tags_sep);
 foreach ($current_photo_tags_sep[0] as $key => $value) {
   $value = trim($value);
   $all_tagged = R::find("photo", "tags LIKE ?", ["%$value%"]);
+  $num = 0;
     foreach (array_keys($all_tagged) as $key => $value) {
       if ($current_photo_id != $value) {
-       print_r ($all_tagged[$value]["small"]);
+        $ident_num = $all_tagged[$value]["identification"];
+        $card_thumb = $all_tagged[$value]["small"];
+        //$num = ($key - 1);
+        $image["card"][$num]["image"][0]["url"] = $card_thumb;
+        $image["card"][$num]["image"][0]["url2"] = "/$ident_num";
+        $num = ($num + 1);
+        if ($num >= 2) {
+          break 2;
+        }
      }
     }
 
