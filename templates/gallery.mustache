@@ -64,6 +64,17 @@
                 <img src="{{url}}" alt="{{alt_text}}" class="carrots img-fluid edge-padding">
                 </div>
                 {{/img}}
+              <div class="col-sm-4">
+                <p></p>
+                {{#img_text}}
+                <p>{{content}}</p>
+                {{#button}}
+                <p>
+                  <a class="btn btn-primary btn-lg" href="/contact">{{name}} &raquo;</a>
+                </p>
+                {{/button}}
+                {{/img_text}}
+              </div>
             </div>
           {{/image}}
           {{#image2}}
