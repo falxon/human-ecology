@@ -18,3 +18,4 @@ $dbmanage_img["description"] = $current_photo_description;
 $dbmanage_img["tags"] = $current_photo_tags;
 $dbmanage_img["thumb_url"] = $current_photo_thumb_url;
 $dbmanage_img["water"] = $current_photo_url;
+$dbmanage_img["idid"] = $current_photo_id;

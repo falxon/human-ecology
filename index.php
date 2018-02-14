@@ -113,6 +113,10 @@ if($currentpage=="/home" || $currentpage == "/"){
 			$bodyModel = $control;
 			$template = "home";
 		}
+    else {
+  		$_SESSION["passsword"] = 0;
+  		header("Location: /login");
+  	}
 	} else {
 		$_SESSION["passsword"] = 0;
 		header("Location: /login");
@@ -121,8 +125,7 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/dbentry.inc.php";
 	if (isset($_SESSION["password"])){
 		if ($_SESSION["password"]==1){
-			if (isset($_POST["gallery-select"])&&
-			isset($_POST["watermarked"])&&
+			if (isset($_POST["gallery-select"])&& isset($_POST["watermarked"])&&
 			isset($_POST["thumb"])){
 				if ($_POST["gallery-select"]=="Photography"){
 					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
@@ -135,26 +138,60 @@ if($currentpage=="/home" || $currentpage == "/"){
 					$photo["tags"] = $_POST["tags"];
 					R::store($photo);
 				}
-				elseif ($_POST["gallery-select"]=="Drawing"){
-
-				}
-
 			}
 			$bodyModel = $dbentry;
 			$template = "dbentry";
 		}
+    else {
+  		$_SESSION["passsword"] = 0;
+  		header("Location: /login");
+  	}
 	} else {
 		$_SESSION["passsword"] = 0;
 		header("Location: /login");
 	}
 } elseif (preg_match("/(manage\/)\d+/", $currentpage)){
   include "php-include/dbmanageimg.inc.php";
-  $bodyModel = $dbmanage_img;
-  $template = "dbmanageimg";
+    if (isset($_SESSION["password"])){
+      if ($_SESSION["password"]==1){
+        $bodyModel = $dbmanage_img;
+        $template = "dbmanageimg";
+      }
+      else {
+    		$_SESSION["passsword"] = 0;
+    		header("Location: /login");
+    	}
+  }
+  else {
+		$_SESSION["passsword"] = 0;
+		header("Location: /login");
+	}
 } elseif ($currentpage=="/manage"){
   include "php-include/dbmanage.inc.php";
-  $bodyModel = $dbmanage;
-  $template = "gallery";
+    if (isset($_SESSION["password"])){
+      if ($_SESSION["password"]==1){
+        if (isset($_POST["idid"])&& isset($_POST["thumbnail1"])&& isset($_POST["water"])&& isset($_POST["tags1"])&& isset($_POST["description1"])){
+          $bean_id = $_POST["idid"];
+          $photo_bean = R::load("photo", $bean_id);
+          $photo_bean["small"] = $_POST["thumbnail1"];
+          $photo_bean["watermark"] = $_POST["water"];
+          $photo_bean["tags"] = $_POST["tags1"];
+          $photo_bean["description"] = $_POST["description1"];
+          R::store($photo_bean);
+          echo "es werkt!";
+        }
+        $bodyModel = $dbmanage;
+        $template = "gallery";
+      }
+      else {
+    		$_SESSION["passsword"] = 0;
+    		header("Location: /login");
+    	}
+    }
+    else {
+  		$_SESSION["passsword"] = 0;
+  		header("Location: /login");
+  	}
 } elseif ($currentpage=="/logout"){
   include "php-include/logout.inc.php";
 	$_SESSION["password"] = 0;
