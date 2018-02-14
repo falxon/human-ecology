@@ -81,12 +81,6 @@ $login = array_merge($defaultpage, $login);
 $login["card"][0]["card_title"] = "Login to upload and manage photos and other information";
 $login["card"][0]["button"][0]["button_name"] = "Login";
 
-$dbentry["title"] = "Add photos";
-$dbentry = array_merge($defaultinternal, $dbentry);
-$dbentry["page_text"][0]["main"][0]["title"][0]["words"] = "Add photos";
-$dbentry["page_text"][0]["main"][0]["paragraph"][0]["content"] = "Use this form to add new photos to the site. You must provide a thumbnail version and a larger, watermarked version.";
-$dbentry["card"][0]["card_title"] = "";
-$dbentry["card"][0]["button"][0]["button_name"] = "Submit";
 
 $control["title"] = "Control Panel";
 $control = array_merge($defaultinternal, $control);
@@ -161,6 +155,8 @@ if($currentpage=="/home" || $currentpage == "/"){
 					$photo["small"] = $_POST["thumb"];
 					$photo["watermark"] = $_POST["watermarked"];
 					$photo["identification"] = $id_number + 1;
+					$photo["description"] = $_POST["description"];
+					$photo["tags"] = $_POST["tags"];
 					R::store($photo);
 				}
 				elseif ($_POST["gallery-select"]=="Drawing"){
