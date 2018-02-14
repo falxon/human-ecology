@@ -28,7 +28,7 @@ $image["card"][1]["image"][0]["url2"] = "/";
 $image["card"][2]["image"][0]["url"] = "http://placehold.it/320x217";
 $image["card"][2]["image"][0]["url2"] = "/";
 
-//print_r ($current_photo_tags_sep);
+
 foreach ($current_photo_tags_sep[0] as $key => $value) {
   $value = trim($value);
   $all_tagged = R::find("photo", "tags LIKE ?", ["%$value%"]);
@@ -37,7 +37,6 @@ foreach ($current_photo_tags_sep[0] as $key => $value) {
       if ($current_photo_id != $value) {
         $ident_num = $all_tagged[$value]["identification"];
         $card_thumb = $all_tagged[$value]["small"];
-        //$num = ($key - 1);
         $image["card"][$num]["image"][0]["url"] = $card_thumb;
         $image["card"][$num]["image"][0]["url2"] = "/$ident_num";
         $num = ($num + 1);

@@ -60,36 +60,6 @@ $card["card"][2]["button"][0]["url"] = "";
 $card["card"][2]["button"][0]["text"] = "See More";
 
 
-
-
-
-
-
-
-
-$pets["title"] = "Pet Drawing";
-$pets = array_merge($defaultpage, $pets);
-$pets["page_text"][0]["main"][0]["title"][0]["words"] = "Pet Drawing";
-$pets["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
-
-
-
-
-
-$login["title"] = "Login";
-$login = array_merge($defaultpage, $login);
-$login["card"][0]["card_title"] = "Login to upload and manage photos and other information";
-$login["card"][0]["button"][0]["button_name"] = "Login";
-
-
-$control["title"] = "Control Panel";
-$control = array_merge($defaultinternal, $control);
-
-$logout["title"] = "Logging Out";
-$logout = array_merge($defaultinternal, $logout);
-$logout["page_text"][0]["main"][0]["title"][0]["words"] = "You are being logged out";
-
-
 $currentpage = $_SERVER['REQUEST_URI'];
 
 if($currentpage=="/home" || $currentpage == "/"){
@@ -105,6 +75,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$bodyModel = $photo;
 	$template = "gallery";
 } elseif ($currentpage=="/pets"){
+  include "php-include/pets.inc.php";
 	$bodyModel = $pets;
 	$template = "gallery";
 } elseif (preg_match("/\d+/",$currentpage)){
@@ -120,6 +91,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$bodyModel = $buy;
 	$template = "form";
 } elseif ($currentpage=="/login"){
+  include "php-include/login.inc.php";
 	if(isset($_POST["password"])){
     $login = R::load("login", 1);
     if(password_verify ($_POST["password"], $login["phash"])){
@@ -133,6 +105,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$bodyModel = $login;
 	$template = "login";
 } elseif ($currentpage=="/control"){
+  include "php-include/control.inc.php";
 	if (isset($_SESSION["password"])){
 		if ($_SESSION["password"]==1){
 			$bodyModel = $control;
@@ -143,6 +116,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 		header("Location: /login");
 	}
 } elseif ($currentpage=="/add-photo"){
+  include "php-include/dbentry.inc.php";
 	if (isset($_SESSION["password"])){
 		if ($_SESSION["password"]==1){
 			if (isset($_POST["gallery-select"])&&
@@ -172,6 +146,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 		header("Location: /login");
 	}
 } elseif ($currentpage=="/logout"){
+  include "php-include/logout.inc.php";
 	$_SESSION["password"] = 0;
 	session_destroy();
 	$bodyModel = $logout;
