@@ -40,6 +40,9 @@ $defaultinternal["navbar"][3]["name"] = "Manage Photos";
 $defaultinternal["navbar"][4]["url"] = "/logout";
 $defaultinternal["navbar"][4]["name"] = "Log out";
 
+$error["title"] = "404 Error";
+$error = array_merge ($defaultpage, $error);
+
 
 
 $card["card"][0]["image"][0]["url"] = "http://placehold.it/300x200";
@@ -80,7 +83,7 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/pets.inc.php";
 	$bodyModel = $pets;
 	$template = "gallery";
-} elseif (preg_match("/^\d+/",$currentpage)){
+} elseif (preg_match("/\/\d+/A",$currentpage)){
 	include "php-include/image.inc.php";
 	$bodyModel = $image;
 	$template = "image";
@@ -100,7 +103,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 			$_SESSION["password"] = 1;
       header("Location: /control");
     } else {
-			$_SESSION["passsword"] = 0;
+			$_SESSION["password"] = 0;
       header("Location: /login");
     }
   }
@@ -114,11 +117,11 @@ if($currentpage=="/home" || $currentpage == "/"){
 			$template = "home";
 		}
     else {
-  		$_SESSION["passsword"] = 0;
+  		$_SESSION["password"] = 0;
   		header("Location: /login");
   	}
 	} else {
-		$_SESSION["passsword"] = 0;
+		$_SESSION["password"] = 0;
 		header("Location: /login");
 	}
 } elseif ($currentpage=="/add-photo"){
@@ -143,11 +146,11 @@ if($currentpage=="/home" || $currentpage == "/"){
 			$template = "dbentry";
 		}
     else {
-  		$_SESSION["passsword"] = 0;
+  		$_SESSION["password"] = 0;
   		header("Location: /login");
   	}
 	} else {
-		$_SESSION["passsword"] = 0;
+		$_SESSION["password"] = 0;
 		header("Location: /login");
 	}
 } elseif (preg_match("/(manage\/)\d+/", $currentpage)){
@@ -158,12 +161,12 @@ if($currentpage=="/home" || $currentpage == "/"){
         $template = "dbmanageimg";
       }
       else {
-    		$_SESSION["passsword"] = 0;
+    		$_SESSION["password"] = 0;
     		header("Location: /login");
     	}
   }
   else {
-		$_SESSION["passsword"] = 0;
+		$_SESSION["password"] = 0;
 		header("Location: /login");
 	}
 } elseif ($currentpage=="/manage"){
@@ -178,18 +181,24 @@ if($currentpage=="/home" || $currentpage == "/"){
           $photo_bean["tags"] = $_POST["tags1"];
           $photo_bean["description"] = $_POST["description1"];
           R::store($photo_bean);
-          echo "es werkt!";
+        }
+        if (isset($_POST["delete"])&& isset($_POST["idied"])){
+          if ($_POST["delete"] == "yes"){
+            $bean_id = $_POST["idied"];
+            $bean_to_delete = R::load("photo", $bean_id);
+            R::trash($bean_to_delete);
+          }
         }
         $bodyModel = $dbmanage;
         $template = "gallery";
       }
       else {
-    		$_SESSION["passsword"] = 0;
+    		$_SESSION["password"] = 0;
     		header("Location: /login");
     	}
     }
     else {
-  		$_SESSION["passsword"] = 0;
+  		$_SESSION["password"] = 0;
   		header("Location: /login");
   	}
 } elseif ($currentpage=="/logout"){
