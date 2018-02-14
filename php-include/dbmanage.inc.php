@@ -4,6 +4,8 @@ $dbmanage["title"] = "Manage Photos";
 $dbmanage = array_merge($defaultinternal, $dbmanage);
 $dbmanage["page_text"][0]["main"][0]["title"][0]["words"] = "Manage Photos";
 $dbmanage["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;
+$dbmanage["page_text"][0]["main"][0]["search"][0]["name"] = "Search";
+
 $photo_table = R::find("photo");
 $incremental = 0;
 foreach ($photo_table as $key => $value) {

@@ -37,8 +37,12 @@ $defaultinternal["navbar"][2]["url"] = "/add-photo";
 $defaultinternal["navbar"][2]["name"] = "Add Photo";
 $defaultinternal["navbar"][3]["url"] = "/manage";
 $defaultinternal["navbar"][3]["name"] = "Manage Photos";
-$defaultinternal["navbar"][4]["url"] = "/logout";
-$defaultinternal["navbar"][4]["name"] = "Log out";
+$defaultinternal["navbar"][4]["url"] = "/identification";
+$defaultinternal["navbar"][4]["name"] = "Find a Photo";
+$defaultinternal["navbar"][5]["url"] = "/man-blog";
+$defaultinternal["navbar"][5]["name"] = "Manage Blog";
+$defaultinternal["navbar"][6]["url"] = "/logout";
+$defaultinternal["navbar"][6]["name"] = "Log out";
 
 $error["title"] = "404 Error";
 $error = array_merge ($defaultpage, $error);
@@ -189,6 +193,10 @@ if($currentpage=="/home" || $currentpage == "/"){
             R::trash($bean_to_delete);
           }
         }
+        if (isset($_POST["search"])){
+          $searched_photo = $_POST['search'];
+          header("Location: /$searched_photo");
+        }
         $bodyModel = $dbmanage;
         $template = "gallery";
       }
@@ -201,7 +209,7 @@ if($currentpage=="/home" || $currentpage == "/"){
   		$_SESSION["password"] = 0;
   		header("Location: /login");
   	}
-} elseif ($currentpage=="/logout"){
+  } elseif ($currentpage=="/logout"){
   include "php-include/logout.inc.php";
 	$_SESSION["password"] = 0;
 	session_destroy();
