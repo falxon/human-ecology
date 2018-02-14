@@ -35,8 +35,10 @@ $defaultinternal["navbar"][1]["url"] = "/control";
 $defaultinternal["navbar"][1]["name"] = "Control Panel";
 $defaultinternal["navbar"][2]["url"] = "/add-photo";
 $defaultinternal["navbar"][2]["name"] = "Add Photo";
-$defaultinternal["navbar"][3]["url"] = "/logout";
-$defaultinternal["navbar"][3]["name"] = "Log out";
+$defaultinternal["navbar"][3]["url"] = "/manage";
+$defaultinternal["navbar"][3]["name"] = "Manage Photos";
+$defaultinternal["navbar"][4]["url"] = "/logout";
+$defaultinternal["navbar"][4]["name"] = "Log out";
 
 
 
@@ -78,7 +80,7 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/pets.inc.php";
 	$bodyModel = $pets;
 	$template = "gallery";
-} elseif (preg_match("/\d+/",$currentpage)){
+} elseif (preg_match("/^\d+/",$currentpage)){
 	include "php-include/image.inc.php";
 	$bodyModel = $image;
 	$template = "image";
@@ -145,6 +147,14 @@ if($currentpage=="/home" || $currentpage == "/"){
 		$_SESSION["passsword"] = 0;
 		header("Location: /login");
 	}
+} elseif (preg_match("/(manage\/)\d+/", $currentpage)){
+  include "php-include/dbmanageimg.inc.php";
+  $bodyModel = $dbmanage_img;
+  $template = "dbmanageimg";
+} elseif ($currentpage=="/manage"){
+  include "php-include/dbmanage.inc.php";
+  $bodyModel = $dbmanage;
+  $template = "gallery";
 } elseif ($currentpage=="/logout"){
   include "php-include/logout.inc.php";
 	$_SESSION["password"] = 0;

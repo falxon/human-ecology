@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{title}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/modules/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/portfolio-item.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">{{site_name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {{#navbar}}
+            <li class="nav-item {{active}}">
+              <a class="nav-link" href="{{url}}">{{name}}
+              {{#current}}<span class="sr-only">{{raisin}}</span>{{/current}}</a>
+            </li>
+            {{/navbar}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4">Manage Photo
+      </h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-md-8">
+          <img class="img-fluid" src="{{image_url}}" alt="">
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="my-3">Modify this Image:</h3>
+
+          <form action="/manage" method="post">
+            <div class="form-group">
+              <label for="thumbnail1">Thumbnail</label>
+              <input type="url" class="form-control" name="thumbnail1" id="thumbnail1" required="true" value="{{thumb_url}}">
+            </div>
+            <div class="form-group">
+              <label for="thumbnail1">Watermarked Image</label>
+              <input type="url" class="form-control" name="water" id="water" required="true" value="{{water}}">
+            </div>
+            <div class="form-group">
+              <label for="tags1">Tags</label>
+              <input type="text" class="form-control" name="tags1" id="tags1" required="true" value="{{tags}}">
+            </div>
+            <div class="form-group">
+              <label for="description1">Description</label>
+              <textarea class="form-control" name="description1" id="description1" rows="5" required="true"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Sumbit</button>
+          </form>
+        </div>
+
+      </div>
+      <!-- /.row -->
+      <!-- /.row -->
+      <p></p>
+      <p></p>
+      <p></p>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
