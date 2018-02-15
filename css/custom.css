@@ -16,3 +16,7 @@
 .image-centred {
   text-align:center;
 }
+
+.editor-toolbar a {
+  color: #FFFFFF !important;
+}

@@ -17,7 +17,7 @@ $photo["tags"] = "wolf";
 $id = R::store($photo);
 
 $login = R::dispense("login");
-$login["phash"] = "$2y$10$3svhflKo4Sm8a5aEpQ3spe9EUiJTKRvPuMhJJjVEESqpRVs9k2fO6";
+$login["phash"] = "$2y$10$F/MevCENXrCS1c/Luo97fOQaKN7v8xqLpGQ1xz8ZSr4e5P0/azLBK";
 $loginid = R::store($login);
 
 $user = R::dispense("user");

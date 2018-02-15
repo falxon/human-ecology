@@ -73,6 +73,26 @@ $currentpage = $_SERVER['REQUEST_URI'];
 
 if($currentpage=="/home" || $currentpage == "/"){
 	include "php-include/home.inc.php";
+  if(isset($_POST["name"])&& isset($_POST["email"])&& isset($_POST["subject"])&& isset($_POST["message"])){
+    $to = "JojenRW@outlook.com";
+		$name = $_POST["name"];
+		$email = $_POST["email"];
+    $subject = $_POST["subject"];
+    $imgiden = "about " .$_POST['image_id'];
+    $org = "from " .$_POST['organisation'];
+		$headers = 'From: JojenRW@outlook.com' . "\r\n" .
+    		"Reply-To:".$_POST["email"];
+        "\r\nContent-Type: text/html; charset=UTF-8\r\n";
+		$message = "Message from $email $org $imgiden\n" .$_POST["message"];
+    if(mail($to, $subject, $message, $headers)){
+      echo "es werkt";
+  		//$home["email_sent"][0]["type"] = "success";
+  		//$home["email_sent"][0]["message"] = "Your message has been sent. Diana Beaven Physiotherapist will get back to you shortly.";
+    }/*else{
+      $home["email_sent"][0]["type"] = "warning";
+  		$home["email_sent"][0]["message"] = "Unfortunately, your message has not been sent due to an error. Apologies for any inconvenience caused - we are working on this issue and hope to resolve it shortly.";
+    }*/
+  }
 	$bodyModel = $home;
 	$template = "home";
 } elseif ($currentpage=="/about"){
