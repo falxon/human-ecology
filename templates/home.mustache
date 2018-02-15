@@ -85,6 +85,22 @@
             </div>
           </div>
           {{/image2}}
+          {{#search}}
+          <form action="/manage" method="post">
+            <label for="search">Enter the identification number of the photo you wish to find:</label>
+            <input type="text" name="search" id="search" required="true">
+            <button type="submit" class="btn btn-primary">{{name}}</button>
+          </form>
+          {{/search}}
+          {{#linklist}}
+          <p>
+            <ul>
+              {{#link}}
+              <li><a href="{{url}}">{{text}}</a></li>
+              {{/link}}
+            </ul>
+          </p>
+          {{/linklist}}
           {{/main}}
           {{#button}}
           <p>

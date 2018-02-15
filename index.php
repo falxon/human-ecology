@@ -25,8 +25,10 @@ $defaultpage["navbar"][2]["url"] = "/photo";
 $defaultpage["navbar"][2]["name"] = "Photography";
 $defaultpage["navbar"][3]["url"] = "/pets";
 $defaultpage["navbar"][3]["name"] = "Pet Drawing";
-$defaultpage["navbar"][4]["url"] = "/contact";
-$defaultpage["navbar"][4]["name"] = "Contact Me";
+$defaultpage["navbar"][4]["url"] = "/blog";
+$defaultpage["navbar"][4]["name"] = "Blog";
+$defaultpage["navbar"][5]["url"] = "/contact";
+$defaultpage["navbar"][5]["name"] = "Contact Me";
 
 $defaultinternal["site_name"] = "Human Ecology";
 $defaultinternal["navbar"][0]["url"] = "/home";
@@ -37,12 +39,10 @@ $defaultinternal["navbar"][2]["url"] = "/add-photo";
 $defaultinternal["navbar"][2]["name"] = "Add Photo";
 $defaultinternal["navbar"][3]["url"] = "/manage";
 $defaultinternal["navbar"][3]["name"] = "Manage Photos";
-$defaultinternal["navbar"][4]["url"] = "/identification";
-$defaultinternal["navbar"][4]["name"] = "Find a Photo";
-$defaultinternal["navbar"][5]["url"] = "/man-blog";
-$defaultinternal["navbar"][5]["name"] = "Manage Blog";
-$defaultinternal["navbar"][6]["url"] = "/logout";
-$defaultinternal["navbar"][6]["name"] = "Log out";
+$defaultinternal["navbar"][4]["url"] = "/man-blog";
+$defaultinternal["navbar"][4]["name"] = "Manage Blog";
+$defaultinternal["navbar"][5]["url"] = "/logout";
+$defaultinternal["navbar"][5]["name"] = "Log out";
 
 $error["title"] = "404 Error";
 $error = array_merge ($defaultpage, $error);
@@ -209,6 +209,22 @@ if($currentpage=="/home" || $currentpage == "/"){
   		$_SESSION["password"] = 0;
   		header("Location: /login");
   	}
+  } elseif ($currentpage=="/man-blog"){
+    include "php-include/man-blog.inc.php";
+      if (isset($_SESSION["password"])){
+        if ($_SESSION["password"]==1){
+          $bodyModel = $manage_blog;
+          $template = "blogmanage";
+        }
+        else {
+          $_SESSION["password"] = 0;
+          header("Location: /login");
+        }
+      }
+      else {
+        $_SESSION["password"] = 0;
+        header("Location: /login");
+      }
   } elseif ($currentpage=="/logout"){
   include "php-include/logout.inc.php";
 	$_SESSION["password"] = 0;
