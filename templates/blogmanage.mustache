@@ -87,7 +87,6 @@
 
 
       <!-- /.row -->
-
       <div class="row justify-content-center">
         {{#card}}
         <div class="col-md-8 mb-4 centered edge-padding">
@@ -99,18 +98,23 @@
                   <input type="text" class="form-control" name="title" id="title" required="true">
                 </div>
                 <div class="form-group">
-                  <label for="post">Post</label>
-                  <textarea name="post" id="post" required="true"></textarea>
+                  <label for="blog-entry">Post</label>
+                  <textarea id="blog-entry" name="blog-entry" required="true">
+                  </textarea>
+                </div
+              {{#button}}
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary float-right">{{button_name}}</button>
                 </div>
+              {{/button}}
+              </form>
+            </div>
 
             </div>
-            <div class="card-footer">
-              {{#button}}<button type="submit" class="btn btn-primary float-right">{{button_name}}</button>{{/button}}
             </div>
-            </form>
           </div>
+            {{/card}}
         </div>
-        {{/card}}
         </div>
 
       </div>
@@ -133,7 +137,7 @@
     <script src="/modules/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script>
-      var simplemde = new SimpleMDE({ element: document.getElementById("post") });
+      var simplemde = new SimpleMDE({ element: document.getElementById("blog-entry") });
     </script>
   </body>
 

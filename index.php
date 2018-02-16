@@ -6,6 +6,7 @@ require 'modules/mustache/src/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
 require "modules/redbean/rb.php";
 require "secure.php";
+require 'modules/php-markdown-lib/Michelf/Markdown.inc.php';
 
 R::setup('mysql:host=localhost;dbname=ecology',
         $database_user, $database_pass);
@@ -119,6 +120,10 @@ if($currentpage=="/home" || $currentpage == "/"){
 	include "php-include/buy.inc.php";
 	$bodyModel = $buy;
 	$template = "form";
+} elseif ($currentpage=="/blog"){
+  include "php-include/blog.inc.php";
+  $bodyModel = $blog;
+  $template = "blog";
 } elseif ($currentpage=="/login"){
   include "php-include/login.inc.php";
 	if(isset($_POST["password"])){
@@ -139,6 +144,12 @@ if($currentpage=="/home" || $currentpage == "/"){
 		if ($_SESSION["password"]==1){
 			$bodyModel = $control;
 			$template = "home";
+      if (isset($_POST["blog-entry"])){
+        $blogbean = R::dispense("blog");
+        $blogbean["title"] = $_POST["title"];
+        $blogbean["entry"] = $_POST["blog-entry"];
+        R::store($blogbean);
+      }
 		}
     else {
   		$_SESSION["password"] = 0;
