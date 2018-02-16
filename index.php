@@ -14,10 +14,11 @@ R::setup('mysql:host=localhost;dbname=ecology',
 $m = new Mustache_Engine(array(
 'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__).'/templates')
 ));
-
+$sitename = "Human in Nature";
 $lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-$defaultpage["site_name"] = "Human Ecology";
+
+$defaultpage["site_name"] = "$sitename";
 $defaultpage["navbar"][0]["url"] = "/home";
 $defaultpage["navbar"][0]["name"] = "Home";
 $defaultpage["navbar"][1]["url"] = "/about";
@@ -31,7 +32,7 @@ $defaultpage["navbar"][4]["name"] = "Blog";
 $defaultpage["navbar"][5]["url"] = "/contact";
 $defaultpage["navbar"][5]["name"] = "Contact Me";
 
-$defaultinternal["site_name"] = "Human Ecology";
+$defaultinternal["site_name"] = "$sitename";
 $defaultinternal["navbar"][0]["url"] = "/home";
 $defaultinternal["navbar"][0]["name"] = "Home";
 $defaultinternal["navbar"][1]["url"] = "/control";
@@ -124,6 +125,10 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/blog.inc.php";
   $bodyModel = $blog;
   $template = "blog";
+} elseif (preg_match("/(\/blog\/)\S+/", $currentpage)){
+  include "php-include/blogpost.inc.php";
+  $bodyModel = $blogpost;
+  $template = "blogpost";
 } elseif ($currentpage=="/login"){
   include "php-include/login.inc.php";
 	if(isset($_POST["password"])){
@@ -145,9 +150,13 @@ if($currentpage=="/home" || $currentpage == "/"){
 			$bodyModel = $control;
 			$template = "home";
       if (isset($_POST["blog-entry"])){
+        $no_spaces = preg_replace("/\s/", "-", $_POST["title"]);
+        $uri = mb_strtolower($no_spaces, 'UTF-8');
         $blogbean = R::dispense("blog");
         $blogbean["title"] = $_POST["title"];
         $blogbean["entry"] = $_POST["blog-entry"];
+        $blogbean["date"] = date("d-m-Y");
+        $blogbean["uri"] = $uri;
         R::store($blogbean);
       }
 		}
