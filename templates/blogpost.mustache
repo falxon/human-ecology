@@ -61,7 +61,37 @@
           <hr>
 
           <!-- Post Content -->
-          {{blog_post}}
+
+            <div class="col-lg-12">
+              <div class="card">
+
+                <div class="card-body blog-post">
+                  {{{blog_post}}}
+
+                </div>
+
+              </div>
+            </div>
+
+
+
+            {{#card}}
+            <div class="col-sm-4 my-4">
+              <div class="card">
+                {{#image}}<img class="card-img-top" src="{{url}}" alt="">
+                <div class="card-body">{{/image}}
+                  <h4 class="card-title">{{title}}</h4>
+                  {{#imageid}}<h5 class="card-title">{{id}}</h5>{{/imageid}}
+                  <p class="card-text">{{text}}</p>
+                </div>
+                {{#button}}
+                <div class="card-footer">
+                  <a href="{{url}}" class="btn btn-primary">{{text}}</a>
+                </div>
+                {{/button}}
+              </div>
+            </div>
+            {{/card}}
 
           <hr>
 
@@ -78,7 +108,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; {{site_name}}</p>
       </div>
       <!-- /.container -->
     </footer>

@@ -20,3 +20,32 @@
 .editor-toolbar a {
   color: #FFFFFF !important;
 }
+
+.blog-post h1 {
+  font-size: 2em;
+}
+
+.blog-post h2 {
+  font-size: 1.75em;
+}
+
+.blog-post h3 {
+  font-size: 1.5em;
+}
+
+.blog-post h4 {
+  font-size: 1.25em;
+}
+
+.blog-post h5 {
+  font-size: 1.125em;
+}
+
+.blog-post h6 {
+  font-size: 1em;
+}
+
+.blog-post img {
+  max-width: 100%;
+  height: auto;
+}

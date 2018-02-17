@@ -6,7 +6,10 @@ require 'modules/mustache/src/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
 require "modules/redbean/rb.php";
 require "secure.php";
-require 'modules/php-markdown-lib/Michelf/Markdown.inc.php';
+require 'Michelf/Markdown.inc.php';
+
+
+
 
 R::setup('mysql:host=localhost;dbname=ecology',
         $database_user, $database_pass);
