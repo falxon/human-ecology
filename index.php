@@ -7,6 +7,7 @@ Mustache_Autoloader::register();
 require "modules/redbean/rb.php";
 require "secure.php";
 require 'Michelf/Markdown.inc.php';
+use Michelf\Markdown;
 
 
 
@@ -53,25 +54,27 @@ $error["title"] = "404 Error";
 $error = array_merge ($defaultpage, $error);
 
 
-
-$card["card"][0]["image"][0]["url"] = "http://placehold.it/300x200";
-$card["card"][0]["imageid"][0]["id"] = "bf873t48";
-$card["card"][0]["title"] = "Random picture";
-$card["card"][0]["text"] = "Blah";
-$card["card"][0]["button"][0]["url"] = "";
+$photo_array = R::findAll( 'photo' , ' ORDER BY id DESC LIMIT 2 ' );
+$photo_id = array_keys($photo_array);
+$blog_array = R::findAll( 'blog' , ' ORDER BY date DESC LIMIT 1 ' );
+$blog_id = array_keys($blog_array);
+$bloggything = $blog_array[$blog_id[0]]["entry"];
+$redacted = substr ($bloggything, 0, 200);
+$card["card"][0]["image"][0]["url"] = $photo_array[$photo_id[0]]["small"];
+$card["card"][0]["title"] = "";
+$card["card"][0]["text"] = "";
+$card["card"][0]["button"][0]["url"] = "/photo";
 $card["card"][0]["button"][0]["text"] = "See More";
-$card["card"][1]["image"][0]["url"] = "http://placehold.it/300x200";
-$card["card"][1]["imageid"][0]["id"] = "bf873t48";
-$card["card"][1]["title"] = "Random picture";
-$card["card"][1]["text"] = "Blah";
-$card["card"][1]["button"][0]["url"] = "";
+$card["card"][1]["image"][0]["url"] = $photo_array[$photo_id[1]]["small"];
+$card["card"][1]["title"] = "";
+$card["card"][1]["text"] = "";
+$card["card"][1]["button"][0]["url"] = "/photo";
 $card["card"][1]["button"][0]["text"] = "See More";
-$card["card"][2]["image"][0]["url"] = "http://placehold.it/300x200";
-$card["card"][2]["imageid"][0]["id"] = "bf873t48";
-$card["card"][2]["title"] = "Random picture";
-$card["card"][2]["text"] = "Blah";
-$card["card"][2]["button"][0]["url"] = "";
-$card["card"][2]["button"][0]["text"] = "See More";
+$card["card"][2]["class"] = "extra-edge-padding";
+$card["card"][2]["title"] = $blog_array[$blog_id[0]]["title"];
+$card["card"][2]["text3"] = Markdown::defaultTransform($redacted);
+$card["card"][2]["link"][0]["url2"] = "/blog/".$blog_array[$blog_id[0]]["uri"];
+$card["card"][2]["link"][0]["text2"] = "See More";
 
 
 $currentpage = $_SERVER['REQUEST_URI'];
@@ -132,6 +135,8 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/edit.inc.php";
   if (isset($_SESSION["password"])){
     if ($_SESSION["password"]==1) {
+      $bodyModel = $edit;
+      $template = "edit";
 
 
     }
@@ -144,8 +149,24 @@ if($currentpage=="/home" || $currentpage == "/"){
     $_SESSION["password"] = 0;
     header("Location: /login");
   }
-  $bodyModel = $edit;
-  $template = "edit";
+
+} elseif (preg_match("/\/blog\/.+\/delete/D", $currentpage)){
+  include "php-include/delete.inc.php";
+  if (isset($_SESSION["password"])){
+    if ($_SESSION["password"]==1) {
+      $bodyModel = $delete;
+      $template = "home";
+    }
+    else {
+      $_SESSION["password"] = 0;
+      header("Location: /login");
+    }
+  }
+  else {
+    $_SESSION["password"] = 0;
+    header("Location: /login");
+  }
+
 } elseif (preg_match("/(\/blog\/)\S+/", $currentpage)){
   include "php-include/blogpost.inc.php";
   if (isset($_SESSION["password"])){
@@ -204,6 +225,16 @@ if($currentpage=="/home" || $currentpage == "/"){
         R::store($blog_edit);
         $control["alert"][0]["type"] = "success";
         $control["alert"][0]["message"] = "Your blog entry has been edited";
+      }
+      if (isset($_POST["delete-post"])){
+        $finding_to_delete = R::find("blog", "uri = ?", [$_POST["uri"]]);
+        $id_array = array_keys($finding_to_delete);
+        $id = $id_array[0];
+        $post_to_delete = R::load("blog", $id);
+        R::trash($post_to_delete);
+        $control["alert"][0]["type"] = "success";
+        $control["alert"][0]["message"] = "Your blog entry has been deleted";
+
       }
       $bodyModel = $control;
 			$template = "home";

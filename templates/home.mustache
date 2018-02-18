@@ -109,23 +109,49 @@
           {{/main}}
           {{#button}}
           <p>
-            <a class="btn btn-primary btn-lg" href="/about">{{name}} &raquo;</a>
+            <a class="btn btn-primary btn-lg" href="{{url}}">{{name}} &raquo;</a>
           </p>
           {{/button}}
+          {{#submit}}
+          <form action="{{action}}" method="post">
+            <button type="submit" name="button" class="btn btn-primary">{{value}}</button>
+          </form>
+          {{/submit}}
 
   {{/page_text}}
+
+  {{#centred_text}}
+  <div class="row">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4 justify-content-center">
+    <hr>
+    <p>{{content}}</p>
+    {{#submit}}
+    <form action="{{action}}" method="post">
+      <input type="text" name="uri" value="{{post_to_delete}}" class="invisible" readonly>
+      <p>
+      <button type="submit" name="delete-post" class="btn btn-primary">{{value}}</button>
+    </p>
+    </form>
+    {{/submit}}
+    <hr>
+  </div>
+</div>
+  {{/centred_text}}
 
       <!-- /.row -->
 
       <div class="row">
         {{#card}}
         <div class="col-sm-4 my-4">
-          <div class="card">
+          <div class="card {{class}}">
             {{#image}}<img class="card-img-top" src="{{url}}" alt="">
             <div class="card-body">{{/image}}
               <h4 class="card-title">{{title}}</h4>
-              {{#imageid}}<h5 class="card-title">{{id}}</h5>{{/imageid}}
               <p class="card-text">{{text}}</p>
+              <div class="no-image">{{{text3}}}</div>
+              {{#link}}<a href="{{url2}}" class="btn btn-primary">{{text2}}</a>{{/link}}
             </div>
             {{#button}}
             <div class="card-footer">
