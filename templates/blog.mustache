@@ -42,18 +42,6 @@
       </div>
     </nav>
 
-    <!-- Header with Background Image -->
-    {{#header}}<header class="business-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h>{{title}}</h>
-          </div>
-        </div>
-      </div>
-    </header>
-    {{/header}}
-
     <!-- Page Content -->
     <div class="container">
 {{#page_text}}
@@ -107,36 +95,47 @@
             <a class="btn btn-primary btn-lg" href="/about">{{name}} &raquo;</a>
           </p>
           {{/button}}
-
+        </div>
+      </div>
   {{/page_text}}
 
-      <!-- /.row -->
 
-      <div class="row">
-        {{#card}}
-        <div class="col-sm-4 my-4">
-          <div class="card">
-            {{#image}}<img class="card-img-top" src="{{url}}" alt="">
-            <div class="card-body">{{/image}}
-              <h4 class="card-title">{{title}}</h4>
-              {{#imageid}}<h5 class="card-title">{{id}}</h5>{{/imageid}}
-              <p class="card-text">{{text}}</p>
-            </div>
-            {{#button}}
-            <div class="card-footer">
-              <a href="{{url}}" class="btn btn-primary">{{text}}</a>
-            </div>
-            {{/button}}
-          </div>
+<hr>
+<div class="row">
+  <div class="col-lg-8 edge-padding">
+    <div class="card no-image extra-edge-padding">
+      {{#post}}
+        {{#post_title}}
+        <h2>{{title}}</h2>
+        {{/post_title}}
+        <div class="blog-post">
+          {{#post_content}}
+          <p>{{{content}}}</p>
+          {{/post_content}}
         </div>
-        {{/card}}
-        </div>
-
-      </div>
-      <!-- /.row -->
-
+        {{#button}}
+        <a href="{{url}}" class="btn btn-primary">{{text}}</a>
+        {{/button}}
+        <hr/>
+      {{/post}}
     </div>
   </div>
+  <div class="col-lg-4 edge-padding">
+    <div class="card links-white">
+      <h5 class="card-header">Archive</h5>
+      <p></p>
+      {{#link}}
+      <ul>
+        {{#link_item}}
+        <li><a href="{{url}}">{{name}}</a></li>
+        {{/link_item}}
+      </ul>
+      {{/link}}
+    </div>
+  </div>
+</div>
+</div>
+<hr>
     <!-- /.container -->
 
     <!-- Footer -->

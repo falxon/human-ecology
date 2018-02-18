@@ -130,6 +130,12 @@ if($currentpage=="/home" || $currentpage == "/"){
   $template = "blog";
 } elseif (preg_match("/(\/blog\/)\S+/", $currentpage)){
   include "php-include/blogpost.inc.php";
+  if (isset($_SESSION["password"])){
+    if ($_SESSION["password"]==1) {
+      $blogpost["edit"][0]["url"] = $_SERVER['REQUEST_URI']."/edit";
+      $blogpost["edit"][0]["url2"] = "/blog/delete";
+    }
+  }
   $bodyModel = $blogpost;
   $template = "blogpost";
 } elseif ($currentpage=="/login"){
@@ -160,7 +166,10 @@ if($currentpage=="/home" || $currentpage == "/"){
         $blogbean["entry"] = $_POST["blog-entry"];
         $blogbean["date"] = date("d-m-Y");
         $blogbean["uri"] = $uri;
-        R::store($blogbean);
+        $post_stored_id = R::store($blogbean);
+        $blogwas = R::load("blog", $post_stored_id);
+        $blogwas["uri"] = $uri."-".$post_stored_id;
+        R::store($blogwas);
       }
 		}
     else {
