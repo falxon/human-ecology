@@ -4,7 +4,6 @@
 use Michelf\Markdown;
 
 $blogpost["title"] = "$sitename - Blog";
-$blogpost = array_merge($defaultpage, $blogpost);
 $article_uri = substr($_SERVER['REQUEST_URI'], 6);
 $dbblogpost = R::find("blog", "uri = ?", [$article_uri]);
 $key_array = array_keys($dbblogpost);

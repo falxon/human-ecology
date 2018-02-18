@@ -128,13 +128,38 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/blog.inc.php";
   $bodyModel = $blog;
   $template = "blog";
+} elseif (preg_match("/\/blog\/.+\/edit/D", $currentpage)){
+  include "php-include/edit.inc.php";
+  if (isset($_SESSION["password"])){
+    if ($_SESSION["password"]==1) {
+
+
+    }
+    else {
+      $_SESSION["password"] = 0;
+      header("Location: /login");
+    }
+  }
+  else {
+    $_SESSION["password"] = 0;
+    header("Location: /login");
+  }
+  $bodyModel = $edit;
+  $template = "edit";
 } elseif (preg_match("/(\/blog\/)\S+/", $currentpage)){
   include "php-include/blogpost.inc.php";
   if (isset($_SESSION["password"])){
     if ($_SESSION["password"]==1) {
+      $blogpost = array_merge($defaultinternal, $blogpost);
       $blogpost["edit"][0]["url"] = $_SERVER['REQUEST_URI']."/edit";
-      $blogpost["edit"][0]["url2"] = "/blog/delete";
+      $blogpost["edit"][0]["url2"] = $_SERVER['REQUEST_URI']."/delete";
     }
+    else {
+      $blogpost = array_merge($defaultpage, $blogpost);
+    }
+  }
+  else {
+    $blogpost = array_merge($defaultpage, $blogpost);
   }
   $bodyModel = $blogpost;
   $template = "blogpost";
@@ -156,8 +181,6 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/control.inc.php";
 	if (isset($_SESSION["password"])){
 		if ($_SESSION["password"]==1){
-			$bodyModel = $control;
-			$template = "home";
       if (isset($_POST["blog-entry"])){
         $no_spaces = preg_replace("/\s/", "-", $_POST["title"]);
         $uri = mb_strtolower($no_spaces, 'UTF-8');
@@ -170,7 +193,20 @@ if($currentpage=="/home" || $currentpage == "/"){
         $blogwas = R::load("blog", $post_stored_id);
         $blogwas["uri"] = $uri."-".$post_stored_id;
         R::store($blogwas);
+        $control["alert"][0]["type"] = "success";
+        $control["alert"][0]["message"] = "Your blog entry has been posted";
       }
+      if (isset($_POST["blog-entry-edit"])){
+        $entry_id = $_POST["entry_id"];
+        $blog_edit = R::load("blog", $entry_id);
+        $blog_edit["title"] = $_POST["title-edit"];
+        $blog_edit["entry"] = $_POST["blog-entry-edit"];
+        R::store($blog_edit);
+        $control["alert"][0]["type"] = "success";
+        $control["alert"][0]["message"] = "Your blog entry has been edited";
+      }
+      $bodyModel = $control;
+			$template = "home";
 		}
     else {
   		$_SESSION["password"] = 0;
@@ -196,6 +232,9 @@ if($currentpage=="/home" || $currentpage == "/"){
 					$photo["description"] = $_POST["description"];
 					$photo["tags"] = $_POST["tags"];
 					R::store($photo);
+          $photo["alert"][0]["type"] = "success";
+          $photo["alert"][0]["message"] = "Your photo has been added";
+        }
 				}
 			}
 			$bodyModel = $dbentry;
@@ -237,6 +276,8 @@ if($currentpage=="/home" || $currentpage == "/"){
           $photo_bean["tags"] = $_POST["tags1"];
           $photo_bean["description"] = $_POST["description1"];
           R::store($photo_bean);
+          $dbmanage["alert"][0]["type"] = "success";
+          $dbmanage["alert"][0]["message"] = "Your photo has been edited";
         }
         if (isset($_POST["delete"])&& isset($_POST["idied"])){
           if ($_POST["delete"] == "yes"){

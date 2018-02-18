@@ -45,6 +45,11 @@
 
     <!-- Page Content -->
     <div class="container">
+      {{#alert}}
+      <div class="alert alert-{{type}}" role="primary">
+        {{message}}
+      </div>
+      {{/alert}}
 {{#page_text}}
       <div class="row">
         <div class="col-sm-12">
