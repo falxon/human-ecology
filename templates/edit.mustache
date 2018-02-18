@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{title}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/modules/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/business-frontpage.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link href="/css/custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">{{site_name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {{#navbar}}
+            <li class="nav-item {{active}}">
+              <a class="nav-link" href="{{url}}">{{name}}
+              {{#current}}<span class="sr-only">{{raisin}}</span>{{/current}}</a>
+            </li>
+            {{/navbar}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- /.row -->
+      <div class="row justify-content-center">
+        {{#card}}
+        <div class="col-md-8 mb-4 centered edge-padding">
+          <div class="card h-100">
+            <div class="card-body">
+              <form action="/control" method="post">
+                <div class="form-group">
+                  <label for="title-edit">Post Title</label>
+                  <input type="text" class="form-control" name="title-edit" id="title-edit" required="true" value="{{post_title}}">
+                </div>
+                <div class="form-group">
+                  <label for="blog-entry-edit">Post</label>
+                  <textarea id="blog-entry-edit" name="blog-entry-edit" required="true">{{post_for_edit}}
+                  </textarea>
+                </div>
+                <div class="form-group">
+                  <label for="entry_id"></label>
+                  <input type="text" id="entry_id" name="entry_id" value="{{entry_id}}">
+                </div>
+              {{#button}}
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary float-right">{{button_name}}</button>
+                </div>
+              {{/button}}
+              </form>
+            </div>
+
+            </div>
+            </div>
+          </div>
+            {{/card}}
+        </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+  </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; {{site_name}}</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/modules/jquery/jquery.js"></script>
+    <script src="/modules/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+      var simplemde = new SimpleMDE({ element: document.getElementById("blog-entry-edit") });
+    </script>
+  </body>
+
+</html>
