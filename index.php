@@ -50,10 +50,6 @@ $defaultinternal["navbar"][4]["name"] = "Manage Blog";
 $defaultinternal["navbar"][5]["url"] = "/logout";
 $defaultinternal["navbar"][5]["name"] = "Log out";
 
-$error["title"] = "404 Error";
-$error = array_merge ($defaultpage, $error);
-
-
 $photo_array = R::findAll( 'photo' , ' ORDER BY id DESC LIMIT 2 ' );
 $photo_id = array_keys($photo_array);
 $blog_array = R::findAll( 'blog' , ' ORDER BY date DESC LIMIT 1 ' );
@@ -356,6 +352,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 	$template = "home";
 	header("Location: /login");
 } else {
+  include "php-include/error.inc.php";
 	$bodyModel = $error;
 	$template = "home";
 }

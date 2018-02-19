@@ -1,7 +1,6 @@
 <?php
 $image["title"] = "Image";
 $image = array_merge($defaultpage, $image);
-//$image = array_merge($card, $image);
 $carrot = substr($_SERVER['REQUEST_URI'], 1);
 //$all_carrots = (R::getAll("SELECT $carrot"));
 //print_r (R::getAll("SELECT watermark FROM photo WHERE identification = $carrot"));
