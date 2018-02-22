@@ -35,6 +35,6 @@ $inc = 0;
   $no = 0;
     foreach ($posts as $key => $value) {
       $blog["link"][0]["link_item"][$no]["name"] = $value["title"];
-      $blog["link"][0]["link_item"][$no]["url"] = "/".$value["uri"];
+      $blog["link"][0]["link_item"][$no]["url"] = "/blog/".$value["uri"];
       $no = ($no + 1);
     }
