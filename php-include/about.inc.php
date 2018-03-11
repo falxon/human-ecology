@@ -1,5 +1,5 @@
 <?php
-$about["title"] = "Human Ecology - About";
+$about["title"] = "$sitename - About";
 $about = array_merge($defaultpage, $about);
 $about["navbar"][1]["current"][0]["raisin"] = "(current)";
 $about["page_text"][0]["main"][0]["title"][0]["words"] = "About Human Ecology";

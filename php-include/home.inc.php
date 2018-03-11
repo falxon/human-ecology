@@ -1,5 +1,5 @@
 <?php
-$home["title"] = "Human Ecology";
+$home["title"] = $sitename;
 $home = array_merge($defaultpage, $home);
 $home["navbar"][0]["current"][0]["raisin"] = "(current)";
 $home["header"][0]["title"] = "";

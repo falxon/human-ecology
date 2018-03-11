@@ -1,5 +1,5 @@
 <?php
-$image["title"] = "Image";
+$image["title"] = "$sitename";
 $image = array_merge($defaultpage, $image);
 $carrot = substr($_SERVER['REQUEST_URI'], 1);
 //$all_carrots = (R::getAll("SELECT $carrot"));

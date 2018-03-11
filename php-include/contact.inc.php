@@ -1,5 +1,5 @@
 <?php
-$contact["title"] = "Contact me";
+$contact["title"] = "Contact $sitename";
 $contact = array_merge($defaultpage, $contact);
 $contact["page_text"][0]["main"][0]["title"][0]["words"] = "Contact me";
 $contact["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;

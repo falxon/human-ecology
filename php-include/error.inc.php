@@ -1,6 +1,6 @@
 <?php
 
-$error["title"] = "404 Error";
+$error["title"] = "404 Error - $sitename";
 $error = array_merge ($defaultpage, $error);
 $error["card"][0]["centering_div"][0]["cent"] = "";
 $error["card"][0]["title"] = "404 Error";
