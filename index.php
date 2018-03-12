@@ -18,7 +18,7 @@ R::setup('mysql:host=localhost;dbname=ecology',
 $m = new Mustache_Engine(array(
 'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__).'/templates')
 ));
-$sitename = "Human in Nature";
+$sitename = "Human-in-Nature";
 $lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 
@@ -107,6 +107,18 @@ if($currentpage=="/home" || $currentpage == "/"){
 	include "php-include/photo.inc.php";
 	$bodyModel = $photo;
 	$template = "gallery";
+} elseif ($currentpage=="/wildlife"){
+	include "php-include/wildlife.inc.php";
+	$bodyModel = $wildlife;
+	$template = "gallery";
+} elseif ($currentpage=="/city"){
+  include "php-include/city.inc.php";
+  $bodyModel = $city;
+  $template = "gallery";
+} elseif ($currentpage=="/people"){
+  include "php-include/people.inc.php";
+  $bodyModel = $people;
+  $template = "gallery";
 } elseif ($currentpage=="/pets"){
   include "php-include/pets.inc.php";
 	$bodyModel = $pets;
@@ -249,7 +261,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 		if ($_SESSION["password"]==1){
 			if (isset($_POST["gallery-select"])&& isset($_POST["watermarked"])&&
 			isset($_POST["thumb"])){
-				if ($_POST["gallery-select"]=="Photography"){
+				if ($_POST["gallery-select"]=="Wildlife"){
 					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
 					$id_number = $idarray[0]["MAX(identification)"];
 					$photo = R::dispense("photo");
@@ -261,6 +273,32 @@ if($currentpage=="/home" || $currentpage == "/"){
 					R::store($photo);
           $photo["alert"][0]["type"] = "success";
           $photo["alert"][0]["message"] = "Your photo has been added";
+        }
+        if ($_POST["gallery-select"]=="City"){
+					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
+					$id_number = $idarray[0]["MAX(identification)"];
+					$city = R::dispense("city");
+					$city["small"] = $_POST["thumb"];
+					$city["watermark"] = $_POST["watermarked"];
+					$city["identification"] = $id_number + 1;
+					$city["description"] = $_POST["description"];
+					$city["tags"] = $_POST["tags"];
+					R::store($city);
+          $city["alert"][0]["type"] = "success";
+          $city["alert"][0]["message"] = "Your photo has been added";
+        }
+        if ($_POST["gallery-select"]=="People"){
+					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
+					$id_number = $idarray[0]["MAX(identification)"];
+					$people = R::dispense("people");
+					$people["small"] = $_POST["thumb"];
+					$people["watermark"] = $_POST["watermarked"];
+					$people["identification"] = $id_number + 1;
+					$people["description"] = $_POST["description"];
+					$people["tags"] = $_POST["tags"];
+					R::store($people);
+          $people["alert"][0]["type"] = "success";
+          $people["alert"][0]["message"] = "Your photo has been added";
         }
 			}
 			$bodyModel = $dbentry;

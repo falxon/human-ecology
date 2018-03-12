@@ -24,3 +24,21 @@ $user = R::dispense("user");
 $user["sessionid"] = "jk";
 $user_id = R::store($user);
 */
+
+$people = R::dispense("people");
+$people["small"] = "www.placehold.it/300x200";
+$people["watermark"] = "www.placehold.it/900x600";
+$people["identification"] = 68407;
+$people["description"] = "blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah";
+$people["tags"] = "wolf";
+
+R::store($people);
+
+$city = R::dispense("city");
+$city["small"] = "www.placehold.it/300x200";
+$city["watermark"] = "www.placehold.it/900x600";
+$city["identification"] = 88484;
+$city["description"] = "blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah";
+$people["tags"] = "wolf";
+
+R::store($city);
