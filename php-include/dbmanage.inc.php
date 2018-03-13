@@ -40,3 +40,27 @@ foreach ($people_table as $key => $value) {
 	$dbmanage["images"][2]["card"][$incremental3]["url2"] = "/manage/people/" .$photo_id;
 	$incremental3 = $incremental3 + 1;
 }
+
+$dbmanage["images"][3]["title"][0]["tit"] = "Landscapes";
+
+$land_table = R::find("land");
+$incremental4 = 0;
+foreach ($land_table as $key => $value) {
+	$small_url = $land_table[$key]["small"];
+	$photo_id = $land_table[$key]["identification"];
+	$dbmanage["images"][3]["card"][$incremental4]["image"][0]["url"] = $small_url;
+	$dbmanage["images"][3]["card"][$incremental4]["url2"] = "/manage/landscape/" .$photo_id;
+	$incremental4 = $incremental4 + 1;
+}
+
+$dbmanage["images"][4]["title"][0]["tit"] = "People (and Other Animals)";
+
+$pa_table = R::find("drawpeople");
+$incremental5 = 0;
+foreach ($pa_table as $key => $value) {
+	$small_url = $pa_table[$key]["small"];
+	$photo_id = $pa_table[$key]["identification"];
+	$dbmanage["images"][4]["card"][$incremental5]["image"][0]["url"] = $small_url;
+	$dbmanage["images"][4]["card"][$incremental5]["url2"] = "/manage/people-animals/" .$photo_id;
+	$incremental5 = $incremental5 + 1;
+}

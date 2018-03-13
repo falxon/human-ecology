@@ -303,7 +303,7 @@ if($currentpage=="/home" || $currentpage == "/"){
           $photo["alert"][0]["message"] = "Your photo has been added";
         }
         elseif ($_POST["gallery-select"]=="City"){
-					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
+					$idarray = R::getAll("SELECT MAX(identification) FROM city");
 					$id_number = $idarray[0]["MAX(identification)"];
 					$city = R::dispense("city");
 					$city["small"] = $_POST["thumb"];
@@ -316,7 +316,7 @@ if($currentpage=="/home" || $currentpage == "/"){
           $city["alert"][0]["message"] = "Your photo has been added";
         }
         elseif ($_POST["gallery-select"]=="People"){
-					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
+					$idarray = R::getAll("SELECT MAX(identification) FROM people");
 					$id_number = $idarray[0]["MAX(identification)"];
 					$people = R::dispense("people");
 					$people["small"] = $_POST["thumb"];
@@ -327,6 +327,32 @@ if($currentpage=="/home" || $currentpage == "/"){
 					R::store($people);
           $people["alert"][0]["type"] = "success";
           $people["alert"][0]["message"] = "Your photo has been added";
+        }
+        elseif ($_POST["gallery-select"]=="Landscapes"){
+					$idarray = R::getAll("SELECT MAX(identification) FROM land");
+					$id_number = $idarray[0]["MAX(identification)"];
+					$land = R::dispense("land");
+					$land["small"] = $_POST["thumb"];
+					$land["watermark"] = $_POST["watermarked"];
+					$land["identification"] = $id_number + 1;
+					$land["description"] = $_POST["description"];
+					$land["tags"] = $_POST["tags"];
+					R::store($land);
+          $land["alert"][0]["type"] = "success";
+          $land["alert"][0]["message"] = "Your photo has been added";
+        }
+        elseif ($_POST["gallery-select"]=="People (and Other Animals)"){
+					$idarray = R::getAll("SELECT MAX(identification) FROM drawpeople");
+					$id_number = $idarray[0]["MAX(identification)"];
+					$ppla = R::dispense("drawpeople");
+					$ppla["small"] = $_POST["thumb"];
+					$ppla["watermark"] = $_POST["watermarked"];
+					$ppla["identification"] = $id_number + 1;
+					$ppla["description"] = $_POST["description"];
+					$ppla["tags"] = $_POST["tags"];
+					R::store($ppla);
+          $ppla["alert"][0]["type"] = "success";
+          $ppla["alert"][0]["message"] = "Your photo has been added";
         }
 			}
 			$bodyModel = $dbentry;
@@ -361,6 +387,38 @@ if($currentpage=="/home" || $currentpage == "/"){
     if (isset($_SESSION["password"])){
       if ($_SESSION["password"]==1){
         $bodyModel = $cdbmanage_img;
+        $template = "dbmanageimg";
+      }
+      else {
+        $_SESSION["password"] = 0;
+        header("Location: /login");
+      }
+  }
+  else {
+    $_SESSION["password"] = 0;
+    header("Location: /login");
+  }
+} elseif (preg_match("/(manage\/landscape\/)\d+/", $currentpage)){
+  include "php-include/ldbmanageimg.inc.php";
+    if (isset($_SESSION["password"])){
+      if ($_SESSION["password"]==1){
+        $bodyModel = $ldbmanage_img;
+        $template = "dbmanageimg";
+      }
+      else {
+        $_SESSION["password"] = 0;
+        header("Location: /login");
+      }
+  }
+  else {
+    $_SESSION["password"] = 0;
+    header("Location: /login");
+  }
+} elseif (preg_match("/(manage\/people-animals\/)\d+/", $currentpage)){
+  include "php-include/padbmanageimg.inc.php";
+    if (isset($_SESSION["password"])){
+      if ($_SESSION["password"]==1){
+        $bodyModel = $padbmanage_img;
         $template = "dbmanageimg";
       }
       else {
@@ -420,6 +478,24 @@ if($currentpage=="/home" || $currentpage == "/"){
             $photo_bean["description"] = $_POST["description1"];
             R::store($photo_bean);
           }
+          elseif ($_POST["gall"] == "landscape"){
+            $bean_id = $_POST["idid"];
+            $photo_bean = R::load("land", $bean_id);
+            $photo_bean["small"] = $_POST["thumbnail1"];
+            $photo_bean["watermark"] = $_POST["water"];
+            $photo_bean["tags"] = $_POST["tags1"];
+            $photo_bean["description"] = $_POST["description1"];
+            R::store($photo_bean);
+          }
+          elseif ($_POST["gall"] == "people-animals"){
+            $bean_id = $_POST["idid"];
+            $photo_bean = R::load("drawpeople", $bean_id);
+            $photo_bean["small"] = $_POST["thumbnail1"];
+            $photo_bean["watermark"] = $_POST["water"];
+            $photo_bean["tags"] = $_POST["tags1"];
+            $photo_bean["description"] = $_POST["description1"];
+            R::store($photo_bean);
+          }
           $dbmanage["alert"][0]["type"] = "success";
           $dbmanage["alert"][0]["message"] = "Your photo has been edited";
         }
@@ -438,6 +514,16 @@ if($currentpage=="/home" || $currentpage == "/"){
             elseif ($_POST["gally"] == "people"){
               $bean_id = $_POST["idied"];
               $bean_to_delete = R::load("people", $bean_id);
+              R::trash($bean_to_delete);
+            }
+            elseif ($_POST["gally"] == "landscape"){
+              $bean_id = $_POST["idied"];
+              $bean_to_delete = R::load("land", $bean_id);
+              R::trash($bean_to_delete);
+            }
+            elseif ($_POST["gally"] == "people-animals"){
+              $bean_id = $_POST["idied"];
+              $bean_to_delete = R::load("drawpeople", $bean_id);
               R::trash($bean_to_delete);
             }
           }
