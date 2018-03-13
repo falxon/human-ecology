@@ -35,6 +35,8 @@ $defaultpage["navbar"][4]["url"] = "/blog";
 $defaultpage["navbar"][4]["name"] = "Blog";
 $defaultpage["navbar"][5]["url"] = "/contact";
 $defaultpage["navbar"][5]["name"] = "Contact Me";
+$defaultpage["footer_size"] = 5;
+//$defaultpage["credit"][0]["webdever"] = "Entropy Innovations";
 
 $defaultinternal["site_name"] = "$sitename";
 $defaultinternal["navbar"][0]["url"] = "/home";
@@ -49,6 +51,8 @@ $defaultinternal["navbar"][4]["url"] = "/man-blog";
 $defaultinternal["navbar"][4]["name"] = "Manage Blog";
 $defaultinternal["navbar"][5]["url"] = "/logout";
 $defaultinternal["navbar"][5]["name"] = "Log out";
+$defaultinternal["footer_size"] = 5;
+$defaultinternal["credit"][0]["webdever"] = "Entropy Innovations";
 
 $photo_array = R::findAll( 'photo' , ' ORDER BY id DESC LIMIT 2 ' );
 $photo_id = array_keys($photo_array);

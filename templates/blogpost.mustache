@@ -112,11 +112,14 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-{{footer_size}} bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; {{site_name}}</p>
+        {{#credit}}
+        <p class="m-0 text-center text-white links-white">Site developed by <a href="entropyinnovations.com">{{webdever}}</a></p>
+        <p class="m-0 text-center text-white">Content by Jojen Willis</p>
+        {{/credit}}
       </div>
-      <!-- /.container -->
     </footer>
 
     <!-- Bootstrap core JavaScript -->
