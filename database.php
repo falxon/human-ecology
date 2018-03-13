@@ -23,7 +23,7 @@ $loginid = R::store($login);
 $user = R::dispense("user");
 $user["sessionid"] = "jk";
 $user_id = R::store($user);
-*/
+
 
 $people = R::dispense("people");
 $people["small"] = "www.placehold.it/300x200";
@@ -42,3 +42,22 @@ $city["description"] = "blahblahblahblahblahblahblahblahblahblahblahblahblahblah
 $people["tags"] = "wolf";
 
 R::store($city);
+*/
+
+$land = R::dispense("land");
+$land["small"] = "http://www.placehold.it/300x200";
+$land["watermark"] = "http://www.placehold.it/900x600";
+$land["identification"] = 15364;
+$land["description"] = "blahblahblah blahblahblahblah";
+$land["tags"] = "wolf";
+
+R::store($land);
+
+$dppl = R::dispense("drawpeople");
+$dppl["small"] = "http://www.placehold.it/300x200";
+$dppl["watermark"] = "http://www.placehold.it/900x600";
+$dppl["identification"] = 33421;
+$dppl["description"] = "blahblahblah blahblahblahblah";
+$dppl["tags"] = "wolf";
+
+R::store($dppl);

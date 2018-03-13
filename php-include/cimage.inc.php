@@ -2,7 +2,7 @@
 $cimage["title"] = "$sitename";
 $cimage = array_merge($defaultpage, $cimage);
 $carrot = substr($_SERVER['REQUEST_URI'], 6);
-$gallery = "city";
+$gallery = "City";
 //$all_carrots = (R::getAll("SELECT $carrot"));
 //print_r (R::getAll("SELECT watermark FROM photo WHERE identification = $carrot"));
 $current_photo_row = R::find("city","identification = ?", [$carrot]);
@@ -22,7 +22,7 @@ $cimage["image_gallery"] = $gallery;
 
 preg_match_all("/[^,]+/", $current_photo_tags, $current_photo_tags_sep);
 
-$pimage["card"][0]["image"][0]["url"] = "http://placehold.it/320x215";
+$cimage["card"][0]["image"][0]["url"] = "http://placehold.it/320x215";
 $cimage["card"][0]["image"][0]["url2"] = "/";
 $cimage["card"][1]["image"][0]["url"] = "http://placehold.it/320x216";
 $cimage["card"][1]["image"][0]["url2"] = "/";

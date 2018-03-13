@@ -29,8 +29,8 @@ $defaultpage["navbar"][1]["url"] = "/about";
 $defaultpage["navbar"][1]["name"] = "About";
 $defaultpage["navbar"][2]["url"] = "/photo";
 $defaultpage["navbar"][2]["name"] = "Photography";
-$defaultpage["navbar"][3]["url"] = "/pets";
-$defaultpage["navbar"][3]["name"] = "Pet Drawing";
+$defaultpage["navbar"][3]["url"] = "/drawing";
+$defaultpage["navbar"][3]["name"] = "Drawing";
 $defaultpage["navbar"][4]["url"] = "/blog";
 $defaultpage["navbar"][4]["name"] = "Blog";
 $defaultpage["navbar"][5]["url"] = "/contact";
@@ -119,10 +119,22 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/people.inc.php";
   $bodyModel = $people;
   $template = "gallery";
+} elseif ($currentpage=="/drawing"){
+  include "php-include/drawing.inc.php";
+  $bodyModel = $drawing;
+  $template = "gallery";
 } elseif ($currentpage=="/pets"){
   include "php-include/pets.inc.php";
 	$bodyModel = $pets;
 	$template = "gallery";
+} elseif ($currentpage=="/landscape"){
+  include "php-include/landscape.inc.php";
+  $bodyModel = $land;
+  $template = "gallery";
+} elseif ($currentpage=="/people-animals"){
+  include "php-include/people-animals.inc.php";
+  $bodyModel = $pa;
+  $template = "gallery";
 } elseif (preg_match("/\/wildlife\/\d+/A",$currentpage)){
 	include "php-include/image.inc.php";
 	$bodyModel = $image;
@@ -134,6 +146,14 @@ if($currentpage=="/home" || $currentpage == "/"){
 } elseif (preg_match("/\/city\/\d+/A",$currentpage)){
   include "php-include/cimage.inc.php";
   $bodyModel = $cimage;
+  $template = "image";
+} elseif (preg_match("/\/landscape\/\d+/A",$currentpage)){
+  include "php-include/limage.inc.php";
+  $bodyModel = $limage;
+  $template = "image";
+} elseif (preg_match("/\/people-animals\/\d+/A",$currentpage)){
+  include "php-include/paimage.inc.php";
+  $bodyModel = $paimage;
   $template = "image";
 } elseif ($currentpage=="/contact"){
 	include "php-include/contact.inc.php";

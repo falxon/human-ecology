@@ -2,7 +2,7 @@
 $pimage["title"] = "$sitename";
 $pimage = array_merge($defaultpage, $pimage);
 $carrot = substr($_SERVER['REQUEST_URI'], 8);
-$gallery = "people";
+$gallery = "People";
 //$all_carrots = (R::getAll("SELECT $carrot"));
 //print_r (R::getAll("SELECT watermark FROM photo WHERE identification = $carrot"));
 $current_photo_row = R::find("people","identification = ?", [$carrot]);
