@@ -104,6 +104,12 @@
                   <label for="subject">Subject</label>
                   <input type="text" class="form-control" name="subject" id="subject" required="true">
                 </div>
+                {{#image_gallery}}
+                <div class="form-group">
+                  <label for="image_gallery">{{name}}</label>
+                  <input type="text" class="form-control" name="image_gallery" id="image_gallery" required="true" value="{{img_gal}}">
+                </div>
+                {{/image_gallery}}
                 {{#image_id}}
                 <div class="form-group">
                   <label for="image_id">{{name}}</label>

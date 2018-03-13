@@ -11,10 +11,10 @@
     <title>{{title}}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="modules/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/modules/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/portfolio-item.css" rel="stylesheet">
+    <link href="/css/portfolio-item.css" rel="stylesheet">
 
   </head>
 
@@ -63,6 +63,7 @@
           <p>{{tags}}</p>
           <form action="/buy" method="post">
             <div class="form-group">
+              <input type="text" class="form-control invisible" name="image_gallery" id="image_gallery" required="true" value="{{image_gallery}}">
               <input type="text" class="form-control invisible" name="image_id" id="image_id" required="true" value="{{image_id}}">
               <button type="submit" class="btn btn-primary">Buy This Photo</button>
             </div>

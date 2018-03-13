@@ -100,11 +100,18 @@
           </div>
           {{/image2}}
           {{#search}}
+          <div class="col-sm-4">
           <form action="/manage" method="post">
+            <label for="search">Enter the gallery of the photo you wish to find:</label>
+            <select name="gallerysearch" class="form-control" id="gallerysearch">
+              <option value="wildlife">Wildlife</option>
+              <option value="city">City</option>
+              <option value="people">People</option>
             <label for="search">Enter the identification number of the photo you wish to find:</label>
             <input type="text" name="search" id="search" required="true">
             <button type="submit" class="btn btn-primary">{{name}}</button>
           </form>
+        </div>
           {{/search}}
           {{/main}}
           {{#button}}
@@ -116,7 +123,14 @@
   {{/page_text}}
 
       <!-- /.row -->
-
+    {{#images}}
+      {{#title}}
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>{{tit}}</h3>
+      </div>
+    </div>
+      {{/title}}
       <div class="row">
         {{#card}}
         <div class="col-sm-4 my-4">
@@ -128,6 +142,7 @@
         {{/card}}
 
       </div>
+      {{/images}}
       <!-- /.row -->
 
       </div>

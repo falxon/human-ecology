@@ -9,6 +9,6 @@ foreach ($photo_table as $key => $value) {
 	$small_url = $photo_table[$key]["small"];
 	$photo_id = $photo_table[$key]["identification"];
 	$city["card"][$incremental]["image"][0]["url"] = $small_url;
-	$city["card"][$incremental]["url2"] = "/" .$photo_id;
+	$city["card"][$incremental]["url2"] = "city/" .$photo_id;
 	$incremental = $incremental + 1;
 }

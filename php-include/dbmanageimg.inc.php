@@ -2,7 +2,7 @@
 
 $dbmanage_img["title"] = "Manage Photo";
 $dbmanage_img = array_merge($defaultinternal, $dbmanage_img);
-$carrot = substr($_SERVER['REQUEST_URI'], 8);
+$carrot = substr($_SERVER['REQUEST_URI'], 17);
 
 
 $current_photo_row = R::find("photo","identification = ?", [$carrot]);
@@ -19,3 +19,4 @@ $dbmanage_img["tags"] = $current_photo_tags;
 $dbmanage_img["thumb_url"] = $current_photo_thumb_url;
 $dbmanage_img["water"] = $current_photo_url;
 $dbmanage_img["idid"] = $current_photo_id;
+$dbmanage_img["gall"] = "wildlife";

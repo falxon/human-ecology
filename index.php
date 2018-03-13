@@ -82,7 +82,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 		$name = $_POST["name"];
 		$email = $_POST["email"];
     $subject = $_POST["subject"];
-    $imgiden = "about " .$_POST['image_id'];
+    $imgiden = "about " .$_POST['image_id'] ."in " .$_POST['image_gallery'];
     $org = "from " .$_POST['organisation'];
 		$headers = 'From: JojenRW@outlook.com' . "\r\n" .
     		"Reply-To:".$_POST["email"];
@@ -123,10 +123,18 @@ if($currentpage=="/home" || $currentpage == "/"){
   include "php-include/pets.inc.php";
 	$bodyModel = $pets;
 	$template = "gallery";
-} elseif (preg_match("/\/\d+/A",$currentpage)){
+} elseif (preg_match("/\/wildlife\/\d+/A",$currentpage)){
 	include "php-include/image.inc.php";
 	$bodyModel = $image;
 	$template = "image";
+} elseif (preg_match("/\/people\/\d+/A",$currentpage)){
+  include "php-include/pimage.inc.php";
+  $bodyModel = $pimage;
+  $template = "image";
+} elseif (preg_match("/\/city\/\d+/A",$currentpage)){
+  include "php-include/cimage.inc.php";
+  $bodyModel = $cimage;
+  $template = "image";
 } elseif ($currentpage=="/contact"){
 	include "php-include/contact.inc.php";
 	$bodyModel = $contact;
@@ -274,7 +282,7 @@ if($currentpage=="/home" || $currentpage == "/"){
           $photo["alert"][0]["type"] = "success";
           $photo["alert"][0]["message"] = "Your photo has been added";
         }
-        if ($_POST["gallery-select"]=="City"){
+        elseif ($_POST["gallery-select"]=="City"){
 					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
 					$id_number = $idarray[0]["MAX(identification)"];
 					$city = R::dispense("city");
@@ -287,7 +295,7 @@ if($currentpage=="/home" || $currentpage == "/"){
           $city["alert"][0]["type"] = "success";
           $city["alert"][0]["message"] = "Your photo has been added";
         }
-        if ($_POST["gallery-select"]=="People"){
+        elseif ($_POST["gallery-select"]=="People"){
 					$idarray = R::getAll("SELECT MAX(identification) FROM photo");
 					$id_number = $idarray[0]["MAX(identification)"];
 					$people = R::dispense("people");
@@ -312,7 +320,7 @@ if($currentpage=="/home" || $currentpage == "/"){
 		$_SESSION["password"] = 0;
 		header("Location: /login");
 	}
-} elseif (preg_match("/(manage\/)\d+/", $currentpage)){
+} elseif (preg_match("/(manage\/wildlife\/)\d+/", $currentpage)){
   include "php-include/dbmanageimg.inc.php";
     if (isset($_SESSION["password"])){
       if ($_SESSION["password"]==1){
@@ -328,31 +336,96 @@ if($currentpage=="/home" || $currentpage == "/"){
 		$_SESSION["password"] = 0;
 		header("Location: /login");
 	}
+} elseif (preg_match("/(manage\/city\/)\d+/", $currentpage)){
+  include "php-include/cdbmanageimg.inc.php";
+    if (isset($_SESSION["password"])){
+      if ($_SESSION["password"]==1){
+        $bodyModel = $cdbmanage_img;
+        $template = "dbmanageimg";
+      }
+      else {
+        $_SESSION["password"] = 0;
+        header("Location: /login");
+      }
+  }
+  else {
+    $_SESSION["password"] = 0;
+    header("Location: /login");
+  }
+} elseif (preg_match("/(manage\/people\/)\d+/", $currentpage)){
+  include "php-include/pdbmanageimg.inc.php";
+    if (isset($_SESSION["password"])){
+      if ($_SESSION["password"]==1){
+        $bodyModel = $pdbmanage_img;
+        $template = "dbmanageimg";
+      }
+      else {
+        $_SESSION["password"] = 0;
+        header("Location: /login");
+      }
+  }
+  else {
+    $_SESSION["password"] = 0;
+    header("Location: /login");
+  }
 } elseif ($currentpage=="/manage"){
   include "php-include/dbmanage.inc.php";
     if (isset($_SESSION["password"])){
       if ($_SESSION["password"]==1){
         if (isset($_POST["idid"])&& isset($_POST["thumbnail1"])&& isset($_POST["water"])&& isset($_POST["tags1"])&& isset($_POST["description1"])){
-          $bean_id = $_POST["idid"];
-          $photo_bean = R::load("photo", $bean_id);
-          $photo_bean["small"] = $_POST["thumbnail1"];
-          $photo_bean["watermark"] = $_POST["water"];
-          $photo_bean["tags"] = $_POST["tags1"];
-          $photo_bean["description"] = $_POST["description1"];
-          R::store($photo_bean);
+          if ($_POST["gall"] == "wildlife"){
+            $bean_id = $_POST["idid"];
+            $photo_bean = R::load("photo", $bean_id);
+            $photo_bean["small"] = $_POST["thumbnail1"];
+            $photo_bean["watermark"] = $_POST["water"];
+            $photo_bean["tags"] = $_POST["tags1"];
+            $photo_bean["description"] = $_POST["description1"];
+            R::store($photo_bean);
+          }
+          elseif ($_POST["gall"] == "city"){
+            $bean_id = $_POST["idid"];
+            $photo_bean = R::load("city", $bean_id);
+            $photo_bean["small"] = $_POST["thumbnail1"];
+            $photo_bean["watermark"] = $_POST["water"];
+            $photo_bean["tags"] = $_POST["tags1"];
+            $photo_bean["description"] = $_POST["description1"];
+            R::store($photo_bean);
+          }
+          elseif ($_POST["gall"] == "people"){
+            $bean_id = $_POST["idid"];
+            $photo_bean = R::load("people", $bean_id);
+            $photo_bean["small"] = $_POST["thumbnail1"];
+            $photo_bean["watermark"] = $_POST["water"];
+            $photo_bean["tags"] = $_POST["tags1"];
+            $photo_bean["description"] = $_POST["description1"];
+            R::store($photo_bean);
+          }
           $dbmanage["alert"][0]["type"] = "success";
           $dbmanage["alert"][0]["message"] = "Your photo has been edited";
         }
         if (isset($_POST["delete"])&& isset($_POST["idied"])){
           if ($_POST["delete"] == "yes"){
-            $bean_id = $_POST["idied"];
-            $bean_to_delete = R::load("photo", $bean_id);
-            R::trash($bean_to_delete);
+            if ($_POST["gally"] == "wildlife"){
+              $bean_id = $_POST["idied"];
+              $bean_to_delete = R::load("photo", $bean_id);
+              R::trash($bean_to_delete);
+            }
+            elseif ($_POST["gally"] == "city"){
+              $bean_id = $_POST["idied"];
+              $bean_to_delete = R::load("city", $bean_id);
+              R::trash($bean_to_delete);
+            }
+            elseif ($_POST["gally"] == "people"){
+              $bean_id = $_POST["idied"];
+              $bean_to_delete = R::load("people", $bean_id);
+              R::trash($bean_to_delete);
+            }
           }
         }
         if (isset($_POST["search"])){
           $searched_photo = $_POST['search'];
-          header("Location: /$searched_photo");
+          $sphotogallery = $_POST['gallerysearch'];
+          header("Location: /$sphotogallery/$searched_photo");
         }
         $bodyModel = $dbmanage;
         $template = "gallery";
