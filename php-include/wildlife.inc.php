@@ -8,7 +8,7 @@ $incremental = 0;
 foreach ($photo_table as $key => $value) {
 	$small_url = $photo_table[$key]["small"];
 	$photo_id = $photo_table[$key]["identification"];
-	$wildlife["card"][$incremental]["image"][0]["url"] = $small_url;
-	$wildlife["card"][$incremental]["url2"] = "wildlife/" .$photo_id;
+	$wildlife["images"][0]["card"][$incremental]["image"][0]["url"] = $small_url;
+	$wildlife["images"][0]["card"][$incremental]["url2"] = "wildlife/" .$photo_id;
 	$incremental = $incremental + 1;
 }
