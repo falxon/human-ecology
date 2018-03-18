@@ -2,11 +2,11 @@
 require "modules/redbean/rb.php";
 require "secure.php";
 
-R::setup('mysql:host=localhost;dbname=ecology',
+R::setup('mysql:host=ecology.db;dbname=ecology',
         $database_user, $database_pass);
 
 
-/*
+
 $photo = R::dispense("photo");
 $photo["small"] = "www.placehold.it/300x200";
 $photo["watermark"] = "www.placehold.it/900x600";
@@ -42,7 +42,7 @@ $city["description"] = "blahblahblahblahblahblahblahblahblahblahblahblahblahblah
 $people["tags"] = "wolf";
 
 R::store($city);
-*/
+
 
 $land = R::dispense("land");
 $land["small"] = "http://www.placehold.it/300x200";

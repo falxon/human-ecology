@@ -12,7 +12,7 @@ use Michelf\Markdown;
 
 
 
-R::setup('mysql:host=localhost;dbname=ecology',
+R::setup('mysql:host=ecology.db;dbname=ecology',
         $database_user, $database_pass);
 
 $m = new Mustache_Engine(array(

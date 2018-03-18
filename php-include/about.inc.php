@@ -10,5 +10,5 @@ $about["page_text"][0]["main"][1]["paragraph"][0]["content"] = "I grew up in a s
 $about["page_text"][0]["main"][1]["paragraph"][1]["content"] = "It’s not surprising then that when I turned 18 I went to university to study Ecology. After a year however I’d had enough and decided that I couldn’t do what I wanted to do from the perspective of an ecologist so instead I travelled.";
 $about["page_text"][0]["main"][1]["paragraph"][2]["content"] = "Now I travel, mostly around the UK, focusing on wildlife photography and drawing. I like exploring different ways of living sustainably through community living both in the city and in the countryside.";
 $about["page_text"][0]["main"][1]["image"][0]["centering"] = "justify-content-center";
-$about["page_text"][0]["main"][1]["image"][0]["img"][0]["url"] = "http://placehold.it/300x400";
+$about["page_text"][0]["main"][1]["image"][0]["img2"][0]["url"] = "https://image.ibb.co/fQPoCx/j.jpg";
 $about = array_merge($card, $about);
