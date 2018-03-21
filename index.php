@@ -82,7 +82,7 @@ $currentpage = $_SERVER['REQUEST_URI'];
 if($currentpage=="/home" || $currentpage == "/"){
 	include "php-include/home.inc.php";
   if(isset($_POST["name"])&& isset($_POST["email"])&& isset($_POST["subject"])&& isset($_POST["message"])){
-    $to = "emberashdown@gmail.com";
+    $to = "jojenrw@outlook.com";
 		$name = $_POST["name"];
 		$email = $_POST["email"];
     $subject = $_POST["subject"];
