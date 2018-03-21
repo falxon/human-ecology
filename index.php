@@ -82,13 +82,13 @@ $currentpage = $_SERVER['REQUEST_URI'];
 if($currentpage=="/home" || $currentpage == "/"){
 	include "php-include/home.inc.php";
   if(isset($_POST["name"])&& isset($_POST["email"])&& isset($_POST["subject"])&& isset($_POST["message"])){
-    $to = "JojenRW@outlook.com";
+    $to = "emberashdown@gmail.com";
 		$name = $_POST["name"];
 		$email = $_POST["email"];
     $subject = $_POST["subject"];
     $imgiden = "about " .$_POST['image_id'] ."in " .$_POST['image_gallery'];
     $org = "from " .$_POST['organisation'];
-		$headers = 'From: JojenRW@outlook.com' . "\r\n" .
+		$headers = 'From: contact@human-in-nature.org.uk' . "\r\n" .
     		"Reply-To:".$_POST["email"];
         "\r\nContent-Type: text/html; charset=UTF-8\r\n";
 		$message = "Message from $email $org $imgiden\n" .$_POST["message"];
