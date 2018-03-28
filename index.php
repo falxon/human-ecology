@@ -35,7 +35,7 @@ $defaultpage["navbar"][4]["url"] = "/blog";
 $defaultpage["navbar"][4]["name"] = "Blog";
 $defaultpage["navbar"][5]["url"] = "/contact";
 $defaultpage["navbar"][5]["name"] = "Contact Me";
-$defaultpage["footer_size"] = 5;
+$defaultpage["footer_size"] = 4;
 $defaultpage["credit"][0]["webdever"] = "Entropy Innovations";
 
 $defaultinternal["site_name"] = "$sitename";
