@@ -2,7 +2,7 @@
 
 $pdbmanage_img["title"] = "Manage Photo";
 $pdbmanage_img = array_merge($defaultinternal, $pdbmanage_img);
-$carrot = substr($_SERVER['REQUEST_URI'], 13);
+$carrot = substr($_SERVER['REQUEST_URI'], 15);
 
 
 $current_photo_row = R::find("people","identification = ?", [$carrot]);
