@@ -1,5 +1,6 @@
 <?php
 $people["title"] = "$sitename - People";
+$people["metadata"] = "Human photography by Jojen Willis";
 $people = array_merge($defaultpage, $people);
 $people["page_text"][0]["main"][0]["title"][0]["words"] = "People";
 

@@ -1,5 +1,6 @@
 <?php
 $drawing["title"] = "$sitename - Drawing";
+$drawing["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $drawing = array_merge($defaultpage, $drawing);
 $drawing["page_text"][0]["main"][0]["title"][0]["words"] = "Drawing";
 $drawing["page_text"][0]["main"][0]["title_small"][0]["words"] = "Pet Sketches";

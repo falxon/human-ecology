@@ -1,5 +1,6 @@
 <?php
 $pimage["title"] = "$sitename";
+$pimage["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $pimage = array_merge($defaultpage, $pimage);
 $carrot = substr($_SERVER['REQUEST_URI'], 8);
 $gallery = "People";

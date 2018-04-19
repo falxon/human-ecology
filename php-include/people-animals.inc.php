@@ -1,5 +1,6 @@
 <?php
 $pa["title"] = "$sitename - People (and Other Animals)";
+$pa["metadata"] = "Human and Animal drawing by Jojen Willis";
 $pa = array_merge($defaultpage, $pa);
 $pa["page_text"][0]["main"][0]["title"][0]["words"] = "People (and Other Animals)";
 $pa["page_text"][0]["main"][0]["paragraph"][0]["content"] = "Often I come across people who catch my eye; perhaps people who have a unique smile or something indescribable and I know I must draw them. Below are some people who caught my eye and some animals that had a similar effect on me.";

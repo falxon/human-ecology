@@ -1,5 +1,6 @@
 <?php
 $paimage["title"] = "$sitename";
+$paimage["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $paimage = array_merge($defaultpage, $paimage);
 $carrot = substr($_SERVER['REQUEST_URI'], 16);
 $gallery = "People (and Other Animals)";

@@ -435,7 +435,7 @@ if($currentpage=="/home" || $currentpage == "/"){
     header("Location: /login");
   }
 } elseif (preg_match("/(manage\/people\/)\d+/", $currentpage)){
-  include "php-include/pdbmanageimg.inc.php";
+  include "php-include/pdbmanage.inc.php";
     if (isset($_SESSION["password"])){
       if ($_SESSION["password"]==1){
         $bodyModel = $pdbmanage_img;

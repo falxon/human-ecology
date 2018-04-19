@@ -1,5 +1,6 @@
 <?php
 $about["title"] = "$sitename - About";
+$about["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $about = array_merge($defaultpage, $about);
 $about["navbar"][1]["current"][0]["raisin"] = "(current)";
 $about["page_text"][0]["main"][0]["title"][0]["words"] = "About Human-in-Nature";

@@ -2,6 +2,7 @@
 
 $control["title"] = "Control Panel";
 $control = array_merge($defaultinternal, $control);
+$control["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $control["page_text"][0]["main"][0]["title"][0]["words"] = "Control Panel";
 $control["page_text"][0]["main"][0]["paragraph"][0]["content"] = "Welcome to your admin account. Here, you can add or remove photos from the database, change their urls, tags or descriptions. You can also manage your blog.";
 $control["page_text"][0]["main"][1]["title_small"][0]["words"] = "Useful Links";

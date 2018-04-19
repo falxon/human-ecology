@@ -1,5 +1,6 @@
 <?php
 $buy["title"] = "Buy Photo";
+$buy["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $buy = array_merge($defaultpage, $buy);
 $buy["page_text"][0]["main"][0]["title"][0]["words"] = "Buy a photograph";
 $buy["page_text"][0]["main"][0]["paragraph"][0]["content"] = $lipsum;

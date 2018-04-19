@@ -2,6 +2,7 @@
 use Michelf\Markdown;
 
 $blog["title"] = "$sitename - Blog";
+$blog["metadata"] = "Human-in-Nature - blog posts and writing by Photographer and Artist Jojen Willis";
 $blog = array_merge($defaultpage, $blog);
 $posts = R::findAll( 'blog' , ' ORDER BY date DESC ' );
 $inc = 0;

@@ -1,5 +1,6 @@
 <?php
 $pets["title"] = "Pet Drawing";
+$pets["metadata"] = "Pet Drawing by Jojen Willis. What a drawing of your beloved pet? Send an email today!";
 $pets = array_merge($defaultpage, $pets);
 $pets["page_text"][0]["main"][0]["title"][0]["words"] = "Pet Drawing";
 $pets["page_text"][0]["main"][0]["paragraph"][0]["content"] = "Currently I’m available for commision of A4 pet sketches at a reduced price of £25 per pet while I build my portfolio. This is with the agreement that I can use your photo and a scan of my drawing on this site. I’d also hugely appreciate your thoughts about my sketch upon receipt of it.";

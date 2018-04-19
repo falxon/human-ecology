@@ -1,5 +1,6 @@
 <?php
 $wildlife["title"] = "$sitename - Wildlife Photography";
+$wildlife["metadata"] = "Wildlife Photography by Jojen Willis";
 $wildlife = array_merge($defaultpage, $wildlife);
 $wildlife["page_text"][0]["main"][0]["title"][0]["words"] = "Wildlife Photography";
 

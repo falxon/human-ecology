@@ -1,5 +1,6 @@
 <?php
 $home["title"] = $sitename;
+$home["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $home = array_merge($defaultpage, $home);
 $home["navbar"][0]["current"][0]["raisin"] = "(current)";
 $home["header"][0]["title"] = "";

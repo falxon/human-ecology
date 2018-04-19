@@ -1,5 +1,6 @@
 <?php
 $cimage["title"] = "$sitename";
+$cimage["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $cimage = array_merge($defaultpage, $cimage);
 $carrot = substr($_SERVER['REQUEST_URI'], 6);
 $gallery = "City";

@@ -1,6 +1,7 @@
 <?php
 $photo["title"] = "Photography";
 $photo = array_merge($defaultpage, $photo);
+$photo["metadata"] = "Photography by Jojen Willis";
 $photo["page_text"][0]["main"][0]["title"][0]["words"] = "Photography";
 $photo["page_text"][0]["main"][0]["paragraph"][0]["content"] = "I’ve split my photographs into three categories: Wildlife Photography, City Photography and People. Have a scroll through the different sections and see what you think. If you’d like to buy any photos I charge £50 for a copy to distribute how you like provided you use it with my name. If you would like to buy the full rights to a photo please contact me with the name of the photo and we can discuss pricing.";
 $photo["page_text"][0]["main"][1]["title_small"][0]["words"] = "Wildlife Photography";

@@ -1,5 +1,6 @@
 <?php
 $city["title"] = "$sitename - City Photography";
+$city["metadata"] = "Human-in-Nature - City Photography of photographer Jojen Willis";
 $city = array_merge($defaultpage, $city);
 $city["page_text"][0]["main"][0]["title"][0]["words"] = "City Photography";
 

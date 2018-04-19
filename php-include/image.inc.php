@@ -1,5 +1,6 @@
 <?php
 $image["title"] = "$sitename";
+$image["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $image = array_merge($defaultpage, $image);
 $carrot = substr($_SERVER['REQUEST_URI'], 10);
 //$all_carrots = (R::getAll("SELECT $carrot"));

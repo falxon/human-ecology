@@ -1,6 +1,7 @@
 <?php
 
 $cdbmanage_img["title"] = "Manage Photo";
+$cdbmanage_img["metadata"] = "Human-in-Nature showcases the artwork and photography of Jojen Willis, specialising in nature, city and landscape";
 $cdbmanage_img = array_merge($defaultinternal, $cdbmanage_img);
 $carrot = substr($_SERVER['REQUEST_URI'], 13);
 
