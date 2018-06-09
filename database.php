@@ -1,12 +1,11 @@
 <?php
-
 require "modules/redbean/rb.php";
 require "secure.php";
 
 R::setup('mysql:host=ecology.db;dbname=ecology',
         $database_user, $database_pass);
 
-
+/*
 
 $photo = R::dispense("photo");
 $photo["small"] = "www.placehold.it/300x200";
@@ -62,3 +61,4 @@ $dppl["description"] = "blahblahblah blahblahblahblah";
 $dppl["tags"] = "wolf";
 
 R::store($dppl);
+*/
