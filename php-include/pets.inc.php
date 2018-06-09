@@ -8,6 +8,6 @@ $pets["page_text"][0]["main"][0]["paragraph"][1]["content"] = "I’m happy to dr
 $pets["page_text"][0]["main"][0]["paragraph"][2]["content"] = "If you live around Stroud and are looking for a dog walker or pet carer check out <a href='pawservicesmedway.com'>Paw Services Medway</a>";
 $pets["page_text"][0]["main"][0]["image"][0]["img"][0]["url"] = "https://image.ibb.co/hnwPTT/photo_charlie.jpg";
 $pets["page_text"][0]["main"][0]["image"][0]["img"][1]["url"] = "https://image.ibb.co/g20UkH/Charlie_Sketch.jpg";
-$pets["page_text"][0]["main"][0]["image"][1]["img"][0]["url"] = "https://image.ibb.co/crjB8T/580569a4_2c07_48cc_a1e6_9476133d1d29.jpg";
-$pets["page_text"][0]["main"][0]["image"][1]["img"][1]["url"] = "https://image.ibb.co/mzMr8T/f6579858_8611_4996_8147_75896b401856.jpg";
-$pets["page_text"][0]["main"][0]["image"][0]["img_text"][0]["button"][0]["name"] = "Want a drawing of your pet?";
+$pets["page_text"][0]["main"][0]["image"][1]["img2"][0]["url"] = "https://image.ibb.co/crjB8T/580569a4_2c07_48cc_a1e6_9476133d1d29.jpg";
+$pets["page_text"][0]["main"][0]["image"][1]["img2"][1]["url"] = "https://image.ibb.co/mzMr8T/f6579858_8611_4996_8147_75896b401856.jpg";
+$pets["page_text"][0]["main"][0]["image"][1]["img_text"][0]["button"][0]["name"] = "Want a drawing of your pet?";
