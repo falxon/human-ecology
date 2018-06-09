@@ -1,4 +1,5 @@
 <?php
+
 require "modules/redbean/rb.php";
 require "secure.php";
 
